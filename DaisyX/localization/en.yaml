@@ -187,9 +187,7 @@ STRINGS:
 
   pm_menu:
     start_hi_group: 'Hey! Benim Adım Yelis 👸🏻'
-    start_hi:"Hey! Benim Adım Yelis 👸🏻 Yazdığın Metinleri Hızlıca Çıkartmaya Dönüştürebirim Üstelik Grupta Spam Yapmadan 🙅🏻‍♀️ Bir Metni /q Komutuyla Yanıtla Sana Çıkartmasını Göndereyim.
-    "
-    
+    start_hi: "Hey! Benim Adım Yelis 👸🏻 Yazdığın Metinleri Hızlıca Çıkartmaya Dönüştürebirim Üstelik Grupta Spam Yapmadan 🙅🏻‍♀️ Bir Metni /q Komutuyla Yanıtla Sana Çıkartmasını Göndereyim."
     btn_source: "📜 Source code"
     btn_help: "❔ Help"
     btn_lang: "🇺🇸 Language"
