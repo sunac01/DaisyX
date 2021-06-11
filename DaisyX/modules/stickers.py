@@ -15,7 +15,6 @@
 
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import datetime
 import io
 import math
@@ -132,8 +131,10 @@ async def _(event):
         msg.reply_text("Provide some name to search for pack.")
         return
 
+    combot_stickers_url = "https://combot.org/telegram/stickers?q="
+    
     scraper = cloudscraper.create_scraper()
-    text = scraper.get(https://combot.org/telegram/stickers?q= + split[1]).text
+    text = scraper.get(combot_stickers_url + split[1]).text
     soup = bs(text, "lxml")
     results = soup.find_all("a", {"class": "sticker-pack__btn"})
     titles = soup.find_all("div", "sticker-pack__title")
