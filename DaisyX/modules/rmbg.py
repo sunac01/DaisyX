@@ -93,11 +93,8 @@ async def _(event):
         ms = (end - start).seconds
         await event.reply(" ")
     else:
-        await event.reply(
-            "Yelis Bir Hatayla Karşılaştı Lütfen JPG yada PNG Fortmalarını Çevirin"
-            )
-        )
-
+        await event.reply("Yelis Bir Hatayla Karşılaştı Lütfen JPG yada PNG Fortmalarını Çevirin")
+   
 
 def ReTrieveFile(input_file_name):
     headers = {
