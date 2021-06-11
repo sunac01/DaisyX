@@ -44,7 +44,10 @@ def help_markup(modules):
     return markup
 
 
-STICKERS = " "
+STICKERS =  (
+    "CAACAgUAAxkBAAEIVGtgwsb_vGWXWGEiK_KD60UELmZlCAAC_AEAAt35GFabaYzBvLDKLR4E",
+)
+
 
 
 @register(cmds="ados", no_args=False, only_groups=False)
