@@ -58,7 +58,7 @@ STICKERS = (
 )
 
 
-@register(cmds="start", no_args=True, only_groups=True)
+@register(cmds="ados", no_args=False, only_groups=False)
 @disableable_dec("start")
 @get_strings_dec("pm_menu")
 async def start_group_cmd(message, strings):
