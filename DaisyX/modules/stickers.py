@@ -126,20 +126,39 @@ def find_instance(items, class_or_tuple):
 
 @Daisy(pattern="^/sticker (.*)")
 async def _(event):
-    input_str = event.pattern_match.group(1)
-    combot_stickers_url = "https://combot.org/telegram/stickers?q="
-    text = requests.get(combot_stickers_url + input_str)
-    soup = bs(text.text, "lxml")
+    msg = update.effective_message
+    split = msg.text.split(" ", 1)
+    if len(split) == 1:
+        msg.reply_text("Provide some name to search for pack.")
+        return
+
+    scraper = cloudscraper.create_scraper()
+    text = scraper.get(https://combot.org/telegram/stickers?q= + split[1]).text
+    soup = bs(text, "lxml")
     results = soup.find_all("a", {"class": "sticker-pack__btn"})
     titles = soup.find_all("div", "sticker-pack__title")
     if not results:
-        await event.reply("No results found :(")
+        msg.reply_text("No results found :(.")
         return
-    reply = f"Stickers Related to **{input_str}**:"
+    reply = f"Stickers for *{split[1]}*:"
     for result, title in zip(results, titles):
         link = result["href"]
-        reply += f"\nâ€¢ [{title.get_text()}]({link})"
-    await event.reply(reply)
+        reply += f"\n• [{title.get_text()}]({link})"
+    msg.reply_text(reply, parse_mode=ParseMode.MARKDOWN)
+
+def getsticker(update: Update, context: CallbackContext):
+    bot = context.bot
+    msg = update.effective_message
+    chat_id = update.effective_chat.id
+    if msg.reply_to_message and msg.reply_to_message.sticker:
+        file_id = msg.reply_to_message.sticker.file_id
+        new_file = bot.get_file(file_id)
+        new_file.download("sticker.png")
+        bot.send_document(chat_id, document=open("sticker.png", "rb"))
+        os.remove("sticker.png")
+    else:
+        update.effective_message.reply_text(
+            "Please 
 
 
 @Daisy(pattern="^/packinfo$")
