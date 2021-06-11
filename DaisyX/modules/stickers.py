@@ -124,7 +124,7 @@ def find_instance(items, class_or_tuple):
     return None
 
 
-@Daisy(pattern="^/searchsticker (.*)")
+@Daisy(pattern="^/sticker (.*)")
 async def _(event):
     input_str = event.pattern_match.group(1)
     combot_stickers_url = "https://combot.org/telegram/stickers?q="
@@ -210,7 +210,7 @@ async def get_sticker_emoji(event):
     return final_emoji
 
 
-@Daisy(pattern="^/kang ?(.*)")
+@Daisy(pattern="^/kaydet ?(.*)")
 async def _(event):
     if not event.is_reply:
         await event.reply("PLease, Reply To A Sticker / Image To Add It Your Pack")
@@ -227,7 +227,7 @@ async def _(event):
     userid = event.sender_id
     first_name = user.first_name
     packname = f"{first_name}'s Sticker Vol.{pack}"
-    packshortname = f"DaisyX_stickers_{userid}"
+    packshortname = f"Yelis_sticker{userid}"
     kanga = await event.reply("Hello, This Sticker Looks Noice. Mind if Daisy steal it")
     is_a_s = is_it_animated_sticker(reply_message)
     file_ext_ns_ion = "Stickers.png"
