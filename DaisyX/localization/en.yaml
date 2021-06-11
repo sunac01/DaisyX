@@ -188,7 +188,7 @@ STRINGS:
   pm_menu:
     start_hi_group: 'Hey! Benim Adım Yelis 👸🏻'
     start_hi: "Hey! Benim Adım Yelis 👸🏻 Bir Metni /q Komutuyla Yanıtla Sana Çıkartmasını Göndereyim. Bir Resmi /sil İle Yanıtla Arka Planını Kaldırıyım . DAHA FAZLA BİLGİ İÇİN KANALA BAKIN 👇🏻 
-    btn_source: "📜 Source code"
+    btn_source : "📜 Source code"
     btn_help: "❔ Help"
     btn_lang: "🇺🇸 Language"
     btn_channel: "🙋‍♀️ Daisy News"
