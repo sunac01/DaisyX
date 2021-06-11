@@ -69,13 +69,6 @@ async def get_start_func(message, strings, edit=False):
 
     task = msg.edit_text if edit else msg.reply
     buttons = InlineKeyboardMarkup()
-    buttons.add(InlineKeyboardButton(strings["btn_help"], callback_data="get_help"))
-    buttons.add(
-        InlineKeyboardButton(strings["btn_lang"], callback_data="lang_btn"),
-        InlineKeyboardButton(
-            strings["btn_source"], url="https://github.com/TeamDaisyX/"
-        ),
-    )
     buttons.add(
         InlineKeyboardButton(strings["btn_channel"], url="https://t.me/DaisyXUpdates"),
         InlineKeyboardButton(
@@ -84,7 +77,7 @@ async def get_start_func(message, strings, edit=False):
     )
     buttons.add(
         InlineKeyboardButton(
-            "👸🏼 Add DaisyX to your group",
+            "❤️ Add Yelis to your group",
             url=f"https://telegram.me/daisyxbot?startgroup=true",
         )
     )
