@@ -94,8 +94,7 @@ async def _(event):
         await event.reply(" ")
     else:
         await event.reply(
-            "remove.bg API returned Errors. Please report to @DaisySupport_Official\n`{}".format(
-                output_file_name.content.decode("UTF-8")
+            "Yelis Bir Hatayla Karşılaştı Lütfen JPG yada PNG Fortmalarını Çevirin"
             )
         )
 
