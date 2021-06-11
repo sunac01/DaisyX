@@ -47,7 +47,7 @@ async def is_register_admin(chat, user):
 
 @register(pattern="^/sil")
 async def _(event):
-    HELP_STR = "use `/rmbg` as reply to a media"
+    HELP_STR = " "
     if event.fwd_from:
         return
     if event.is_group:
