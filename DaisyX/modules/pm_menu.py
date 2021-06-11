@@ -107,7 +107,7 @@ async def back_btn(event):
     await get_start_func(event, edit=True)
 
 
-@register(cmds="help", only_pm=True)
+@register(cmds="suspus", only_pm=False)
 @disableable_dec("help")
 @get_strings_dec("pm_menu")
 async def help_cmd(message, strings):
