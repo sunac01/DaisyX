@@ -71,7 +71,7 @@ async def get_start_func(message, strings, edit=False):
     buttons = InlineKeyboardMarkup()
     buttons.add(
         InlineKeyboardButton(
-            "Developer", url="https://t.me/Azerbesk"
+            "Developer 👨🏼‍💻", url="https://t.me/Azerbesk"
          ),
         InlineKeyboardButton(
             "Kanal 📣", url="https://t.me/Netdbots"
@@ -80,7 +80,7 @@ async def get_start_func(message, strings, edit=False):
     buttons.add(
         InlineKeyboardButton(
             "❤️ Beni Gruba Ekle ❤️",
-            url=f"https://telegram.me/YelisBot?startgroup=true",
+            url=f"https://telegram.me/YelisBot?startgroup=false",
         )
     )
     # Handle error when user click the button 2 or more times simultaneously
