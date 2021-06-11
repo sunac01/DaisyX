@@ -70,15 +70,17 @@ async def get_start_func(message, strings, edit=False):
     task = msg.edit_text if edit else msg.reply
     buttons = InlineKeyboardMarkup()
     buttons.add(
-        InlineKeyboardButton(strings["btn_channel"], url="https://t.me/DaisyXUpdates"),
         InlineKeyboardButton(
-            strings["btn_group"], url="https://t.me/DaisySupport_Official"
+            "Developer", url="https://t.me/Azerbesk"
+         ),
+        InlineKeyboardButton(
+            "Kanal 📣", url="https://t.me/Netdbots"
         ),
     )
     buttons.add(
         InlineKeyboardButton(
-            "❤️ Add Yelis to your group",
-            url=f"https://telegram.me/daisyxbot?startgroup=true",
+            "❤️ Beni Gruba Ekle ❤️",
+            url=f"https://telegram.me/YelisBot?startgroup=true",
         )
     )
     # Handle error when user click the button 2 or more times simultaneously
