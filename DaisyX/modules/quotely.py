@@ -1,18 +1,14 @@
 """
 MIT License
-
 Copyright (c) 2021 TheHamkerCat
-
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
-
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
-
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -35,7 +31,6 @@ __HELP__ = """
 /q - To quote a message.
 /q [INTEGER] - To quote more than 1 messages.
 /q r - to quote a message with it's reply
-
 Use .q to quote using userbot
 """
 
@@ -65,9 +60,9 @@ def isArgInt(message: Message) -> bool:
 
 
 @app2.on_message(
-    filters.command("q", prefixes=USERBOT_PREFIX)
+    filters.command("q", prefixes=USERBOT_PREFIX) & filters.user(SUDOERS)
 )
-@app.on_message(filters.command("q")
+@app.on_message(filters.command("q"))
 @capture_err
 async def quotly_func(client, message: Message):
     if not message.reply_to_message:
