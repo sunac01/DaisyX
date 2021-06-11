@@ -159,7 +159,8 @@ def getsticker(update: Update, context: CallbackContext):
         os.remove("sticker.png")
     else:
         update.effective_message.reply_text(
-            "Please 
+            "Please reply to a sticker for me to upload its PNG."
+        )
 
 
 @Daisy(pattern="^/packinfo$")
