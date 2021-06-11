@@ -45,7 +45,7 @@ async def is_register_admin(chat, user):
         return True
 
 
-@register(pattern="^/c")
+@register(pattern="^/sil")
 async def _(event):
     HELP_STR = "use `/rmbg` as reply to a media"
     if event.fwd_from:
@@ -63,7 +63,7 @@ async def _(event):
     if event.reply_to_msg_id:
         message_id = event.reply_to_msg_id
         reply_message = await event.get_reply_message()
-        await event.reply("Yükleniyor...")
+        await event.reply("🔄 @YelisBot Yüklüyor...")
         try:
             downloaded_file_name = await tbot.download_media(
                 reply_message, TEMP_DOWNLOAD_DIRECTORY
