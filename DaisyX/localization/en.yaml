@@ -186,8 +186,10 @@ STRINGS:
     emoji_not_allowed: "I'm sorry, but admin roles can't have emojis 😞"
 
   pm_menu:
-    start_hi_group: 'Hey there! My name is Daisy'
-    start_hi: "Hey there! My name is <b>Daisy.</b>\nI can help manage your groups with useful features, feel free to add me to your groups!"
+    start_hi_group: 'Hey! Benim Adım Yelis 👸🏻'
+    start_hi:"Hey! Benim Adım Yelis 👸🏻 Yazdığın Metinleri Hızlıca Çıkartmaya Dönüştürebirim Üstelik Grupta Spam Yapmadan 🙅🏻‍♀️ Bir Metni /q Komutuyla Yanıtla Sana Çıkartmasını Göndereyim.
+    "
+    
     btn_source: "📜 Source code"
     btn_help: "❔ Help"
     btn_lang: "🇺🇸 Language"
