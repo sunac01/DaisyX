@@ -39,12 +39,12 @@ select_lang_cb = CallbackData("select_lang_cb", "lang", "back_btn")
 translators_lang_cb = CallbackData("translators_lang_cb", "lang")
 
 
-@register(cmds="lang", no_args=True, user_can_change_info=True)
+@register(cmds="dil", no_args=True, user_can_change_info=True)
 async def select_lang_cmd(message):
     await select_lang_keyboard(message)
 
 
-@get_strings_dec("language")
+@get_strings_dec("dil")
 async def select_lang_keyboard(message, strings, edit=False):
     markup = InlineKeyboardMarkup(row_width=2)
     task = message.reply if edit is False else message.edit_text
@@ -123,7 +123,7 @@ async def change_lang(message, lang, e=False, back_btn=False):
         await message.reply(text, reply_markup=markup, disable_web_page_preview=True)
 
 
-@register(cmds="lang", has_args=True, user_can_change_info=True)
+@register(cmds="dil", has_args=True, user_can_change_info=True)
 @get_strings_dec("language")
 async def select_lang_msg(message, strings):
     lang = get_arg(message).lower()
@@ -141,7 +141,7 @@ async def select_lang_msg(message, strings):
     allow_kwargs=True,
 )
 async def select_lang_callback(query, callback_data=None, **kwargs):
-    lang = callback_data["lang"]
+    lang = callback_data["language"]
     back_btn = callback_data["back_btn"]
     await change_lang(query.message, lang, e=True, back_btn=back_btn)
 
