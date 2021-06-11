@@ -129,7 +129,7 @@ async def help_cmd(message, strings):
     await message.reply(strings["help_header"], reply_markup=button)
 
 
-@register(cmds="help", only_groups=True)
+@register(cmds="sancak", only_groups=False)
 @disableable_dec("help")
 @get_strings_dec("pm_menu")
 async def help_cmd_g(message, strings):
