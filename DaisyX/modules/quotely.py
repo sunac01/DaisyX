@@ -379,7 +379,7 @@ async def doctype(name, size, type, canvas):
 async def no_photo(reply, tot):
     pfp = Image.new("RGBA", (105, 105), (0, 0, 0, 0))
     pen = ImageDraw.Draw(pfp)
-    color = #2b002b
+    color = random.choice(COLORS)
     pen.ellipse((0, 0, 105, 105), fill=color)
     letter = "" if not tot else tot[0]
     font = ImageFont.truetype("resources/Roboto-Regular.ttf", 60)
