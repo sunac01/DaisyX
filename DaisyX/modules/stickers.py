@@ -15,6 +15,7 @@
 
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 import datetime
 import io
 import math
@@ -123,44 +124,22 @@ def find_instance(items, class_or_tuple):
     return None
 
 
-@Daisy(pattern="^/sticker (.*)")
+@Daisy(pattern="^/searchsticker (.*)")
 async def _(event):
-    msg = update.effective_message
-    split = msg.text.split(" ", 1)
-    if len(split) == 1:
-        msg.reply_text("Provide some name to search for pack.")
-        return
-
+    input_str = event.pattern_match.group(1)
     combot_stickers_url = "https://combot.org/telegram/stickers?q="
-    
-    scraper = cloudscraper.create_scraper()
-    text = scraper.get(combot_stickers_url + split[1]).text
-    soup = bs(text, "lxml")
+    text = requests.get(combot_stickers_url + input_str)
+    soup = bs(text.text, "lxml")
     results = soup.find_all("a", {"class": "sticker-pack__btn"})
     titles = soup.find_all("div", "sticker-pack__title")
     if not results:
-        msg.reply_text("No results found :(.")
+        await event.reply("No results found :(")
         return
-    reply = f"Stickers for *{split[1]}*:"
+    reply = f"Stickers Related to **{input_str}**:"
     for result, title in zip(results, titles):
         link = result["href"]
-        reply += f"\n• [{title.get_text()}]({link})"
-    msg.reply_text(reply, parse_mode=ParseMode.MARKDOWN)
-
-def getsticker(update: Update, context: CallbackContext):
-    bot = context.bot
-    msg = update.effective_message
-    chat_id = update.effective_chat.id
-    if msg.reply_to_message and msg.reply_to_message.sticker:
-        file_id = msg.reply_to_message.sticker.file_id
-        new_file = bot.get_file(file_id)
-        new_file.download("sticker.png")
-        bot.send_document(chat_id, document=open("sticker.png", "rb"))
-        os.remove("sticker.png")
-    else:
-        update.effective_message.reply_text(
-            "Please reply to a sticker for me to upload its PNG."
-        )
+        reply += f"\nâ€¢ [{title.get_text()}]({link})"
+    await event.reply(reply)
 
 
 @Daisy(pattern="^/packinfo$")
@@ -231,7 +210,7 @@ async def get_sticker_emoji(event):
     return final_emoji
 
 
-@Daisy(pattern="^/kaydet ?(.*)")
+@Daisy(pattern="^/kang ?(.*)")
 async def _(event):
     if not event.is_reply:
         await event.reply("PLease, Reply To A Sticker / Image To Add It Your Pack")
@@ -248,7 +227,7 @@ async def _(event):
     userid = event.sender_id
     first_name = user.first_name
     packname = f"{first_name}'s Sticker Vol.{pack}"
-    packshortname = f"Yelis_sticker{userid}"
+    packshortname = f"DaisyX_stickers_{userid}"
     kanga = await event.reply("Hello, This Sticker Looks Noice. Mind if Daisy steal it")
     is_a_s = is_it_animated_sticker(reply_message)
     file_ext_ns_ion = "Stickers.png"
