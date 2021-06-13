@@ -186,7 +186,7 @@ async def karma(_, message):
                 if limit > 9:
                     break
                 try:
-                    user_name = (await app.get_users(int(user_idd))).username
+                    user_mention = message.reply_to_message.from_user.mention
                 except Exception:
                     continue
                 msg += f"{user_mention} : `{karma_count}`\n"
