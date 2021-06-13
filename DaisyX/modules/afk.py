@@ -43,7 +43,7 @@ async def afk(message, strings):
         return
 
     if not arg:
-        reason = "No reason"
+        reason = "Belirtilmedi"
     else:
         reason = arg
 
