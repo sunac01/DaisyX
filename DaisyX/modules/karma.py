@@ -189,7 +189,7 @@ async def karma(_, message):
                     user_name = (await app.get_users(int(user_idd))).username
                 except Exception:
                     continue
-                msg += f"{user_name} : `{karma_count}`\n"
+                msg += f"{user_mention} : `{karma_count}`\n"
                 limit += 1
             await message.reply_text(msg)
         else:
