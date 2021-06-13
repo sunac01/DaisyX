@@ -172,7 +172,7 @@ async def karma(_, message):
     if len(message.command) != 2:
         if not message.reply_to_message:
             karma = await get_karmas(chat_id)
-            msg = f"**İtibar Listesi {message.chat.title}:- **\n"
+            msg = f"**İtibar Listesi {message.chat.title}**\n"
             limit = 0
             karma_dicc = {}
             for i in karma:
