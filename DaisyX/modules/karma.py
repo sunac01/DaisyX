@@ -121,7 +121,7 @@ async def upvote(_, message):
         new_karma = {"karma": karma}
         await update_karma(chat_id, await int_to_alpha(user_id), new_karma)
     await message.reply_text(
-        f"Incremented Karma of {user_mention} By 1 \nTotal Points: {karma}"
+        f"{user_mention} İtibar Puanın Arttırıldı. \nToplam Puanın: {karma}"
     )
 
 
@@ -162,17 +162,17 @@ async def downvote(_, message):
         new_karma = {"karma": karma}
         await update_karma(chat_id, await int_to_alpha(user_id), new_karma)
     await message.reply_text(
-        f"Decremented Karma Of {user_mention} By 1 \nTotal Points: {karma}"
+        f"{user_mention} İtibar Puanın Düşürüldü. \nToplam Puanın: {karma}"
     )
 
 
-@app.on_message(filters.command("karma") & filters.group)
+@app.on_message(filters.command("liste") & filters.group)
 async def karma(_, message):
     chat_id = message.chat.id
     if len(message.command) != 2:
         if not message.reply_to_message:
             karma = await get_karmas(chat_id)
-            msg = f"**Karma list of {message.chat.title}:- **\n"
+            msg = f"**İtibar Listesi {message.chat.title}:- **\n"
             limit = 0
             karma_dicc = {}
             for i in karma:
@@ -208,15 +208,15 @@ async def karma(_, message):
     user_id = message.from_user.id
     permissions = await member_permissions(chat_id, user_id)
     if "can_change_info" not in permissions:
-        await message.reply_text("You don't have enough permissions.")
+        await message.reply_text("Yeterli izniniz yok.")
         return
     if status == "on" or status == "ON":
         await karma_on(chat_id)
         await message.reply_text(
-            f"Added Chat {chat_id} To Database. Karma will be enabled here"
+            f"İtibar Sistemi {chat_id} Sobeti İçin Etkinleştirildi."
         )
     elif status == "off" or status == "OFF":
         await karma_off(chat_id)
         await message.reply_text(
-            f"Removed Chat {chat_id} To Database. Karma will be disabled here"
+            f"İtibar Sistemi {chat_id} Sobeti İçin Devre Dışı Bırakıldı."
         )
