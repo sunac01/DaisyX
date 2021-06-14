@@ -16,7 +16,7 @@ from DaisyX.services.pyrogram import pbot
 @pbot.on_message(filters.command("toplan") & ~filters.edited & ~filters.bot)
 @admins_only
 async def tagall(client, message):
-    await message.reply("`Processing.....`")
+    await message.reply("`İşleniyorr.....`")
     sh = get_text(message)
     if not sh:
         sh = "Selam!"
