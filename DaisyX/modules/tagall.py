@@ -28,7 +28,7 @@ async def tagall(client, message):
     for i in kk:
         j = f"<b>{sh}</b> \n{i}"
         await client.send_message(message.chat.id, j, parse_mode="html")
-        sleep(10)
+        
 
 _mod_name_ = "Tagall"
 _help_ = """
