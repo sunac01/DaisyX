@@ -13,7 +13,7 @@ from DaisyX.function.pluginhelpers import admins_only, get_text
 from DaisyX.services.pyrogram import pbot
 
 
-@pbot.on_message(filters.command("toplan") & ~filters.edited & ~filters.bot)
+@pbot.on_message(filters.command("toplan"))
 @admins_only
 async def tagall(client, message):
     await message.reply("`İşleniyorr.....`")
