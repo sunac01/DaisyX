@@ -231,202 +231,172 @@ STRINGS:
     ban_user: "I don't have rights to ban users, please make me admin with that right."
     pin_messages: "I don't have rights to pin messages, please make me admin with that right."
     add_admins: "I don't have rights to add admins, please make me admin with that right."
-  feds:
-    # decorators
-    need_fed_admin: "You are not an admin in <b>{name}</b> federation"
-    need_fed_owner: "You are not an owner of <b>{name}</b> federation"
-    cant_get_user: "Sorry, I can't get that user, try using their user ID"
-
-    # /fnew
-    fed_name_long: "Federation name can't be longer than 60 symbols!"
-    can_only_1_fed: "Users can only create 1 federation, please remove one."
-    name_not_avaible: "Federation with name <code>{name}</code> already exits! Please use another name."
+   feds:
+    #decorators
+    need_fed_admin: "<b>{name}</b> Federasyonunda yönetici değilsin"
+    need_fed_owner: "<b>{name}</b> Federasyonunun sahibi değilsin"
+    cant_get_user: "Maalesef, bu kullanıcıyı bulamadım, kullanıcı ID kullanmayı deneyin"
+    #/fnew
+    fed_name_long: "Federasyon adı 60 sembolden daha uzun olamaz!"
+    can_only_1_fed: "1 kullanıcı sadece 1 Federasyon oluşturabilir, lütfen birini kaldırın."
+    name_not_avaible: "<code>{name}</code> isimli federasyon zaten mevcut! Lütfen başka bir ad kullanın."
     created_fed: |
-      Congrats, you have successfully created a federation.
-      <b>Name:</b> {name}
+      Tebrikler, Federasyon'u başarıyla oluşturdunuz.
+      <b>İsim:</b> {name}
       <b>ID:</b> <code>{id}</code>
-      <b>Creator:</b> {creator}
-      Use <code>/fjoin {id}</code> to connect federation to chat\
-    disallow_anon: As an anonymous admin you cannot create new federation!
-
-    # /fjoin
-    only_creators: "You must be the chat creator to be able to connect chat to a federation."
-    fed_id_invalid: "The given federation ID is invalid! Please give me a valid ID."
-    joined_fed_already: "This chat has already joined a federation! Please use /fleave to leave that federation"
-    join_fed_success: "Great! Chat <b>{chat}</b> is now a part of <b>{fed}</b> federation!"
+      <b>Oluşturan:</b> {creator}
+      <code>/fjoin {id}</code> federasyonu sohbete bağlama için bu komutu kullanın
+    #/fjoin
+    only_creators: "Sohbeti federasyona bağlayabilmek için bir sohbet yaratıcısı olmalısınız."
+    fed_id_invalid: "Belirtilen Federasyon Kimliği geçersiz! Lütfen bana geçerli bir kimlik verin."
+    joined_fed_already: "Bu sohbet zaten bir Federasyon katıldı! Bu federasyondan ayrılmak için lütfen /fleave komutunu kullanın"
+    join_fed_success: "Harika! Sohbet <b>{chat}</b> artık <b>{fed}</b> Federasyonunun bir parçası!"
     join_chat_fed_log: |
-      <b>Chat joined federation</b> #ChatJoined
-      <b>Fed:</b> {fed_name} (<code>{fed_id}</code>)
-      <b>Chat:</b> {chat_name} (<code>{chat_id}</code>)
-    # /leavefed
-    chat_not_in_fed: "This chat is not in any federation yet."
-    leave_fed_success: "Chat <b>{chat}</b> left the <b>{fed}</b> federation."
+      <b>Federasyona yeni sohbet katıldı</b> #SohbetKatıldı
+      <b>Federasyon:</b> {fed_name} (<code>{fed_id}</code>)
+      <b>Sohbet:</b> {chat_name} (<code>{chat_id}</code>)
+    #/leavefed
+    chat_not_in_fed: "Bu sohbet henüz herhangi bir federasyonda değil."
+    leave_fed_success: "Sohbet <b>{chat}</b> <b>{fed}</b> federasyonundan ayrıldı."
     leave_chat_fed_log: |
-      <b>Chat left Federation</b> #ChatLeaved
-      <b>Fed:</b> {fed_name} (<code>{fed_id}</code>)
-      <b>Chat:</b> {chat_name} (<code>{chat_id}</code>)
-    # /fsub
-    already_subsed: "Federation <b>{name}</b> already subscribed to <b>{name2}</b>"
-    subsed_success: "Federation <b>{name}</b> subscribed to <b>{name2}</b>!"
-
-    # /funsub
-    not_subsed: "Federation <b>{name}</b> is not subscribed to <b>{name2}</b>"
-    unsubsed_success: "Federation <b>{name}</b> unsubscribed from <b>{name2}</b>!"
-
-    # /fpromote
+      <b>Sohbet federasyondan ayrıldı </b> #SohbetAyrıldı
+      <b>Federasyon:</b> {fed_name} (<code>{fed_id}</code>)
+      <b>Sohbet:</b> {chat_name} (<code>{chat_id}</code>)
+    #/fsub
+    already_subsed: "<b>{name}</b> federasyonu zaten <b>{name2}</b> 'a abone oldu"
+    subsed_success: "<b>{name}</b> federasyonu <b>{name2}</b> 'a abone oldu!"
+    #/funsub
+    not_subsed: "<b>{name}</b> federasyonu zaten <b>{name2}</b> 'a abone olmadığı için abonelikten çıkılamıyor"
+    unsubsed_success: "<b>{name}</b> federasyonu <b>{name2}</b> 'a abonelikten ayrıldı!"
+    #/fpromote
     #admin_already_in_fed: "User {user} is already a fed admin in <b>{name}</b> Federation."
-    admin_added_to_fed: "User {user} added to <b>{name}</b> federation admins."
+    admin_added_to_fed: "Kullanıcı {user} <b>{name}</b> örgütündeki yöneticilere eklendi."
     promote_user_fed_log: |
-      <b>User promoted to the fed admins</b> #UserPromoted
-      <b>Fed:</b> {fed_name} (<code>{fed_id}</code>)
-      <b>User:</b> {user} (<code>{user_id}</code>)
-    restricted_user:promote: This user is restricted from being federation admin!
-
-    # /fdemote
+      <b>Kullanıcı federasyon yöneticisi oldu</b> #KullanıcıYükseltildi
+      <b>Federasyon:</b> {fed_name} (<code>{fed_id}</code>)
+      <b>Kullanıcı:</b> {user} (<code>{user_id}</code>)
+    #/fdemote
     #admin_not_in_fed: "User {user} is not <b>{name}</b> Federation admin."
-    admin_demoted_from_fed: "User {user} demoted from <b>{name}</b> federation admins."
+    admin_demoted_from_fed: "{user}, <b>{name}</b> Federasyonu yöneticiliğinden alındı."
     demote_user_fed_log: |
-      <b>User demoted from the fed admins</b> #UserDemoted
-      <b>Fed:</b> {fed_name} (<code>{fed_id}</code>)
-      <b>User:</b> {user} (<code>{user_id}</code>)
-    # /fsetlog
-    already_have_chatlog: "<b>{name}</b> federation already has logging enabled in another chat/channel!"
+      <b>Kullanıcı federasyon yöneticilerinden düşürüldü</b> #KullanıcıDüşürüldü
+      <b>Federasyon:</b> {fed_name} (<code>{fed_id}</code>)
+      <b>Kullanıcı:</b> {user} (<code>{user_id}</code>)
+    #/fsetlog
+    already_have_chatlog: "Görünüşe göre <b>{name} </b> federasyonu için başka bir sohbete / kanala günlükleme özelliği etkinleştirilmiş!"
     set_chat_log: |
-      This chat is now logging all actions in <b>{name}</b> federation
-      Federation logging is used for internal assessment of the federation and its performance.
-      The federation should <b>NOT</b> be used as a public wall of shame thereby respecting user data and our privacy guidelines.
+      Bu sohbet artık <b>{name}</b> Federasyonundaki tüm işlemleri günlüğe kaydediyor
+      Federasyon günlüğü, federasyonun ve performansının iç değerlendirmesi için kullanılır.
+      kullanıcı verilerine ve gizlilik yönergelerimize saygı göstererek halka gösterme duvarı olarak KULLANILMAMALIDIR.
     set_log_fed_log: |
-      <b>Enabled logging</b> #LoggingEnabled
-      <b>Fed:</b> {fed_name} (<code>{fed_id}</code>)
-    no_right_to_post: I don't have rights to post messages in that channel!
-
-    # /funsetlog
-    not_logging: "<b>{name}</b> federation isn't logging to any chat/channel!"
-    logging_removed: "Successfully removed logging from <b>{name}</b> federation."
+      <b>Etkinleştirilen günlük kaydı</b> #GünlükKaydıEtkin
+      <b>Federasyon:</b> {fed_name} (<code>{fed_id}</code>)
+    no_right_to_post: O kanala mesaj gönderme hakkım yok!
+    #/funsetlog
+    not_logging: "<b>{name}</b> Federasyonu hiçbir sohbete / kanala giriş yapamıyor!"
+    logging_removed: "Günlük kaydı alma <b>{name}</b> Federasyonundan başarıyla kaldırıldı."
     unset_log_fed_log: |
-      <b>Disabled logging</b> #LoggingDisabled
-      <b>Fed:</b> {fed_name} (<code>{fed_id}</code>)
-    # /fchatlist
-    no_chats: "There's no chats joined this <b>{name}</b> federation"
-    chats_in_fed: "<b>Chats connected to {name} federation:</b>\n"
-    too_large: "Output too large, sending as file"
-
-    # /finfo
+      <b>Devre dışı bırakılan günlük kaydı</b> #GünlükKaydıDevreDışı
+      <b>Federasyon:</b> {fed_name} (<code>{fed_id}</code>)
+    #/fchatlist
+    chats_in_fed: "<b>Sohbet {name} Örgüt'üne bağlandı:</b>\n"
+    too_large: "Çıktı çok büyük, dosya olarak gönderiliyor"
+    #/finfo
     finfo_text: |
-      <b>Federation info</b>
-      <b>Name:</b> {name}
+      <b>Federasyon Bilgisi</b>
+      <b>İsim:</b> {name}
       <b>ID:</b> <code>{fed_id}</code>
-      <b>Creator:</b> {creator}
-      <b>Chats in the fed:</b> {chats}
-      <b>Banned users in the fed:</b> {fbanned}
-    finfo_subs_title: "<b>Federations subscribed to this feds:</b>\n"
-
-    # /fadminlist
-    fadmins_header: "Admins in <b>{fed_name}</b> fed:\n"
-
-    # no_fbanned_in_fed: "There isn't any banned users in {fed_name} Federation!"
-
-    # /fban
-    user_wl: "This user is whitelisted from banning."
-    fban_self: "That's a nice show!"
-    fban_creator: "How can I ban the federation creator?! I don't think it's gonna be funny."
-    fban_fed_admin: "I'm not going to ban a federation admin from their own fed!"
-    update_fban: "This user was already fbanned therefore I am updating the reason to <code>{reason}</code>"
-    already_fbanned: "{user} already banned in this federation."
-    fbanned_header: "<b>New FedBan</b>\n"
-    fban_info: |
-      <b>Federation:</b> {fed}
-      <b>Fed admin:</b> {fadmin}
-      <b>User:</b> {user} (<code>{user_id}</code>)
-    fbanned_reason: "<b>Reason:</b> <code>{reason}</code>"
-    fbanned_process: "\n<b>Status:</b> Banning in <code>{num}</code> fed chats..."
-    fbanned_done: "\n<b>Status:</b> Done! banned in <code>{num}</code> chats!"
-
-    fbanned_silence: "This message will be purged in 5 seconds"
-
-    fbanned_subs_process: "\n<b>Status:</b> Banning in <code>{feds}</code> subscribed feds..."
-    fbanned_subs_done: "\n<b>Status:</b> Done! Banned in <code>{chats}</code> chats of this federation and <code>{subs_chats}</code> chats of <code>{feds}</code> subscribed feds"
+      <b>Sahibi:</b> {creator}
+      <b>Federasyondaki sohbetler:</b> {chats}
+      <b>Federasyondaki yasaklı kullanıcılar:</b> {fbanned}
+    finfo_subs_title: "<b>Federasyon şu federasyonlara abone oldu:</b>"
+    #/fadminlist
+    fadmins_header: "<b>{fed_name}</b> Federasyonunun yöneticileri:"
+    #no_fbanned_in_fed: "There isn't any banned users in {fed_name} Federation!"
+    #/fban
+    user_wl: "Bu kullanıcı beyaz listede olduğundan yasaklanamıyor."
+    fban_self: "Bu güzel bir şov!"
+    fban_creator: "Federasyon sahibini nasıl yasaklayabilirim?! Komik olacağını sanmıyorum."
+    fban_fed_admin: "Bir federasyon yöneticisini kendi federasyonundan yasaklayamam!"
+    already_fbanned: "{user} bu federasyonda zaten yasaklanmıştı."
+    fbanned_header: "<b>Yeni FedBan</b>\n"
+    fban_info: '| #ChatLeaved <b>Federasyon:</b>{fed}<b>Federasyon yöneticisi:</b>{fadmin}<b>Kullanıcı:</b>{user}(<code>{user_id}</code>)'
+    fbanned_reason: "<b>Nedeni:</b> <code>{reason}</code>"
+    fbanned_process: "<b>Durum:</b> <code>{num}</code> adet federasyon sohbetlerinden yasaklanıyor..."
+    fbanned_done: "<b>Durum:</b> Bitti! <code>{num}</code> adet federasyon sohbetlerinden yasaklandı!"
+    fbanned_silence: "Bu mesaj 5 saniye içinde silinecek"
+    fbanned_subs_process: "\n<b>Durum:</b> <code>{feds}</code> adet federasyona bağlı sohbetlerden yasaklanıyor..."
+    fbanned_subs_done: "<b>Durum:</b> Bitti! <code>{chats} </code> federasyonun sohbetlerinden, <code>{feds}</code> aboneliğinin <code>{subs_chats}</code> sohbetlerinden yasaklandı"
     fban_usr_rmvd: |
-      User {user} is currently banned in <b>{fed}</b> federation and have been removed!
-      Reason: <code>{rsn}</code>
+      {user} kullanıcısı grupta geçerli olan <b>{fed}</b> federasyonundan yasaklandı. Bu sebeple kullanıcı gruptan yasaklandı!
+      Sebep: <code>{rsn}</code>
     fban_log_fed_log: |
-      <b>Ban user in the fed</b> #FedBan
-      <b>Fed:</b> {fed_name} (<code>{fed_id}</code>)
-      <b>User:</b> {user} ({user_id})
-      <b>By:</b> {by}
-      <b>Chats banned:</b> user banned in <code>{chat_count}</code>/<code>{all_chats}</code> chats
-    fban_reason_fed_log: "<b>Reason:</b> <code>{reason}</code>\n"
-    fban_subs_fed_log: "\n<b>Subscribed feds:</b> banned in <code>{subs_chats}</code> chats of <code>{feds}</code> federations"
-
-    # /unfban
-    unfban_self: "Think of something else to have fun with instead of this."
-    user_not_fbanned: "{user} isn't banned in this federation."
-    un_fbanned_header: "<b>New Un-FedBan</b>\n"
-    un_fbanned_process: "\n<b>Status:</b> Unbanning in <code>{num}</code> chats..."
-    un_fbanned_done: "\n<b>Status:</b> Done! Unbanned in <code>{num}</code> chats!"
-    un_fbanned_subs_process: "\n<b>Status:</b> Unbanning in <code>{feds}</code> subscribed feds..."
-    un_fbanned_subs_done: "\n<b>Status:</b> Done! Unbanned in <code>{chats}</code> chats of this federation and <code>{subs_chats}</code> chats of <code>{feds}</code> subscribed feds"
-
+      <b>Federasyondaki kullanıcıyı yasakla</b> #FedBan
+      <b>Federasyon:</b> {fed_name} (<code>{fed_id}</code>)
+      <b>Kullanıcı:</b> {user} ({user_id})
+      <b>Kim Tarafından ?:</b> {by}
+      <b>Sohbetler içinde yasaklama:</b> Kullanıcı <code>{chat_count}</code>/<code>{all_chats}</code> sohbet(ler) de yasaklandı
+    fban_reason_fed_log: "<b>Nedeni:</b> <code>{reason}</code>"
+    fban_subs_fed_log: "<b>Abone olunan federasyonlar:</b> <code>{feds}</code> federasyonlarının <code>{subs_chats}</code> sohbetlerinden yasaklandı"
+    #/unfban
+    unfban_self: "Bunun yerine eğlenmek için başka bir şey düşünün."
+    user_not_fbanned: "{user} bu federasyondan yasaklanmadı."
+    un_fbanned_header: "<b>Yeni Un-FedBan</b>\n"
+    un_fbanned_process: "<b>Durum:</b> <code>{num}</code> adet federasyon sohbetlerinden yasağı kaldırılıyor..."
+    un_fbanned_done: "<b>Durum:</b> Bitti! <code>{num}</code> adet federasyon sohbetlerinden yasağı kaldırıldı!"
+    un_fbanned_subs_process: "\n<b>Durum:</b> <code>{feds}</code> adet federasyona bağlı sohbetlerden yasak kaldırılıyor..."
+    un_fbanned_subs_done: "<b>Durum:</b> Bitti! <code>{chats} </code> federasyonun sohbetlerinden, <code>{feds}</code> aboneliğinin <code>{subs_chats}</code> sohbetlerinden yasağı kaldırıldı"
     un_fban_log_fed_log: |
-      <b>Unban user in the fed</b> #FedUnBan
-      <b>Fed:</b> {fed_name} (<code>{fed_id}</code>)
-      <b>User:</b> {user} ({user_id})
-      <b>By:</b> {by}
-      <b>Chats:</b> user unbanned in <code>{chat_count}</code>/<code>{all_chats}</code> chats
-    un_fban_subs_fed_log: "\n<b>Subscribed feds:</b> unbanned in <code>{subs_chats}</code> chats of <code>{feds}</code> federations"
-
-    # /delfed
-    delfed_btn_yes: Yes. Delete federation
-    delfed_btn_no: No.
+      <b>Federasyondaki kullanıcının yasağını kaldır</b> #FedUnBan
+      <b>Federasyon:</b> {fed_name} (<code>{fed_id}</code>)
+      <b>Kullanıcı:</b> {user} ({user_id})
+      <b>Kim Tarafından ?:</b> {by}
+      <b>Sohbetler:</b> Kullanıcı <code>{chat_count}</code>/<code>{all_chats}</code> sohbet(ler) den yasağı kaldırıldı
+    un_fban_subs_fed_log: "<b>Abone olunan federasyonlar:</b> <code>{feds}</code> federasyonlarının <code>{subs_chats}</code> sohbetlerinden yasağı kaldırıldı"
+    #/delfed
+    delfed_btn_yes: Evet. Federasyonu sil
+    delfed_btn_no: Hayır.
     delfed: |
-      Are you sure you want to delete the <b>%s</b> federation?
-      <i>Disclaimer: Deleting this federation will remove all data associated with it from our database!
-      This action is permanent and cannot be reversed!</i>
-    delfed_success: Successfully deleted the federation!
-
-    # /frename
-    frename_same_name: Please enter a different name, not the same one!
-    frename_success: The federation <b>{old_name}</b> renamed to <b>{new_name}</b> successfully!
-
-    # /fbanlist
-    fbanlist_locked: Please wait until %s to use fbanlist again.
-    creating_fbanlist: Creating fban list! Please wait ..
-    fbanlist_done: Fbanlist of federation <b>%s</b>!
-
-    # /importfbans
+      Bu federasyonu <b>%s</b> silmek istediğinizden emin misiniz?
+      <i>Uyarı: Federasyonun silinmesi, kendisiyle ilişkili tüm verileri Veritabanımızdan kaldıracaktır!
+      Bu işlem ne pahasına olursa olsun geri alınamaz!</i>
+    delfed_success: Federasyon başarıyla silindi!
+    #/frename
+    frename_same_name: Lütfen mevcut olandan farklı bir ad girin!
+    frename_success: Federasyon ismi <b>{old_name}</b> isminden <b>{new_name}</b> ismine başarıyla değiştirildi!
+    #/fbanlist
+    fbanlist_locked: Fbanlist'i tekrar kullanmak için lütfen %s kadar bekleyin.
+    creating_fbanlist: Fban listesi oluşturuluyor! Lütfen bekle ..
+    fbanlist_done: Federasyonun fban listesi <b>%s</b>!
+    #/importfbans
     send_import_file: |
-      Send the import file!
-      To cancel this process use /cancel
-    rpl_to_file: Please reply to a file!
-    importfbans_locked: Importing fbans is locked for %s in this federation.
-    big_file_csv: Only supports import csv files less {num} megabytes!
+      İçe aktarma dosyasını gönderin!
+      Bu işlemi iptal etmek için; /cancel komutunu kullanın
+    rpl_to_file: Lütfen bir dosyaya cevap verin!
+    importfbans_locked: Bu federasyonda fbanları içe aktarma %s için kilitlendi.
+    big_file_csv: Yalnızca {num} Megabayttan daha az içe aktarılan csv dosyalarını destekler!
     big_file_json: |
-      Currently json files are limited to {num} megabytes!
-      Use the csv format if you want to import bigger files.
-    invalid_file: "The file is invalid"
-    wrong_file_ext: "Wrong file format! Currently support are: json, csv"
-    importing_process: <b>Importing federation bans...</b>
-    import_done: Importing fed bans finished! {num} bans were imported.
-
-    # def
-    automatic_ban: User {user} is banned in the current federation <b>{fed_name}</b> and has been removed!
-    automatic_ban_sfed: User {user} is banned in the sub federation <b>{fed_name}</b and has been removed!
-    automatic_ban_reason: "\nReason: <code>{text}</code>"
-
-    # /fcheck
-    fcheck_header: "<b>Federation ban info:</b>\n"
-    fbanned_count_pm: "You are fbanned in {count} federation(s)!\n"
-    fban_info:fcheck: "You have been fbanned in {fed} federation on {date}, No reason was given!"
-    fban_info:fcheck:reason: "You have been fbanned in {fed} federation on {date} because of reason -\n {reason}\n"
-    fbanned_data: "{user} has been fbanned in {count} federation(s).\n"
-    fbanned_nowhere: "{user} isn't fbanned anywhere!\n"
-    fbanned_in_fed: "Including the <b>{fed}</b> federation!\n"
-    fbanned_in_fed:reason: "Including the <b>{fed}</b> federation for reason of -\n <code>{reason}</code>"
-    contact_in_pm: "\n\nFor more info on your fbans, please send me a direct message for privacy!"
-    too_long_fbaninfo: "Well! your fbaninfo requires a file!"
-    didnt_fbanned: "You aren't fbanned in this fed."
-    not_fbanned_in_fed: They aren't fbanned in the <b>{fed_name}</b> fed
-
+      Şu anda json dosyaları {num} Megabyte ile sınırlıdır!
+      Daha büyük dosyaları içe aktarmak istiyorsanız bir csv biçimi kullanın.
+    wrong_file_ext: "Hatalı dosya biçimi! Şu anda destek verilen dosya türleri: json, csv"
+    importing_process: <b>Federasyon yasakları içe aktarılıyor...</b>
+    import_done: Federasyon yasaklarının içe aktarılması tamamlandı! {num} yasak içe aktarıldı.
+    #def
+    automatic_ban: '{user} kullanıcısı grupta geçerli olan <b>{fed_name}</b> federasyonundan yasaklandı. Bu sebeple kullanıcı gruptan yasaklandı!'
+    automatic_ban_sfed: '{user} kullanıcısı grupta geçerli olan <b>{fed_name}</b> federasyonunda yasaklı. Bu sebeple kullanıcı gruptan yasaklandı!'
+    automatic_ban_reason: "Sebep: <code>{text}</code>"
+    #/fcheck
+    fcheck_header: "<b>Federasyon yasağı bilgileri:</b>"
+    fbanned_count_pm: "{count} federasyon(lar) da yasaklandınız!"
+    "fban_info:fcheck": "{date} tarihinde {fed} federasyonundan yasaklandınız, hiçbir neden belirtilmedi!"
+    "fban_info:fcheck:reason": "{reason} nedeniyle {date} tarihinde {fed} federasyonundan yasaklandınız"
+    fbanned_data: "{user}, {count} federasyon(lar) dan yasaklandı"
+    fbanned_nowhere: "{user} hiçbir yerde yasaklanmadı!"
+    fbanned_in_fed: "Bu <b>{fed}</b> federasyonunu da içeriyor!"
+    "fbanned_in_fed:reason": "Bu <b>{fed}</b> federasyonunu -\n <code>{reason}</code>"
+    contact_in_pm: "Fbanlarınız hakkında daha fazla bilgi için lütfen bana doğrudan mesaj gönderin, böylece gizliliğiniz güvence altına alınır!"
+    too_long_fbaninfo: "İyi! fbaninfo bir dosya gerektirir!"
+    didnt_fbanned: "Bu federasyonda yasaklanmadın."
 
   reports:
     user_user_admin: "You're an admin here, why'd you need to report someone?.."
