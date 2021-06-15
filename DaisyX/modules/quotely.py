@@ -35,14 +35,14 @@ def isArgInt(message: Message) -> bool:
 @app.on_message(filters.command("q"))
 async def quotly_func(_, message: Message):
     if not message.reply_to_message:
-        await message.reply_text("Reply to a message to quote it.")
+        await message.reply_text("Alıntı yapmak için bir mesaja cevap verin.")
         return
     if not message.reply_to_message.text:
         await message.reply_text(
-            "Replied message has no text, can't quote it."
+            "Cevaplanan mesajın metni yok, alıntı yapılamaz."
         )
         return
-    m = await message.reply_text("Quoting Messages")
+    m = await message.reply_text("Çıkartma Gönderiliyor")
     if len(message.command) < 2:
         messages = [message.reply_to_message]
 
@@ -50,7 +50,7 @@ async def quotly_func(_, message: Message):
         arg = isArgInt(message)
         if arg[0]:
             if arg[1] < 2 or arg[1] > 10:
-                await m.edit("Argument must be between 2-10.")
+                await m.edit("Argüman 2-10 arasında olmalıdır.")
                 return
             count = arg[1]
             messages = await app.get_messages(
@@ -67,7 +67,7 @@ async def quotly_func(_, message: Message):
         else:
             if getArg(message) != "r":
                 await m.edit(
-                    "Incorrect Argument, Pass 'r' or 'INT', EX: /q 2"
+                    "Yanlış Argüman, Pass 'r' or 'INT', EX: /q 2"
                 )
                 return
             reply_message = await app.get_messages(
@@ -78,7 +78,7 @@ async def quotly_func(_, message: Message):
             messages = [reply_message]
     else:
         await m.edit(
-            "Incorrect argument, check quotly module in help section."
+            "Yanlış argüman"
         )
         return
     try:
@@ -93,9 +93,9 @@ async def quotly_func(_, message: Message):
         sticker.close()
     except Exception as e:
         await message.reply_text(
-            "Something wrong happened while quoting messages,"
-            + " This error usually happens when there's a "
-            + " message containing something other than text."
+            "Mesajlardan alıntı yapılırken bir hata oldu,"
+            + " Bu hata genellikle bir "
+            + " metni olmayan bir alıntıdır "
         )
         await m.delete()
         e = format_exc()
