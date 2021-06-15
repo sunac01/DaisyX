@@ -4,7 +4,7 @@ from traceback import format_exc
 from pyrogram import filters
 from pyrogram.types import Message
 
-from DaisyX import pbot as app
+from DaisyX.services.pyrogram import pbot as app
 from DaisyX.function.pluginhelpers import capture_err
 from DaisyX.function.inlinehelper import arq
 
