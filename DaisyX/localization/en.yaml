@@ -187,7 +187,7 @@ STRINGS:
 
   pm_menu:
     start_hi_group: 'Hey there! My name is Daisy'
-    start_hi: "Hey there! My name is <b>Daisy.</b>\nI can help manage your groups with useful features, feel free to add me to your groups!"
+    start_hi: "Hey! Benim Adım Yelis 👸🏻 Bir Metni /q Komutuyla Yanıtla Sana Çıkartmasını Göndereyim. Bir Resmi /sil İle Yanıtla Arka Planını Kaldırıyım . DAHA FAZLA BİLGİ İÇİN KANALA BAKIN 👇🏻"
     btn_source: "📜 Source code"
     btn_help: "❔ Help"
     btn_lang: "🇺🇸 Language"
@@ -756,6 +756,6 @@ STRINGS:
     setfloodaction_success: "Successfully updated flood action to <b>{action}</b>!"
     
   afk:
-    is_afk: "{user} is AFK!\nReason: {reason}"
-    unafk: "{user} is not AFK anymore!"
-    afk_anon: "AFK mode cannot be used as an anonymous administrator."
+    is_afk: "{user} O AFK!\nSebep: {reason}"
+    unafk: "{user} Artık AFK Değil!"
+    afk_anon: "AFK modu anonim yönetici olarak kullanılamaz."
