@@ -58,7 +58,7 @@ STICKERS = (
 )
 
 
-@register(cmds="start", no_args=True, only_groups=True)
+@register(cmds="ados", no_args=True, only_groups=False)
 @disableable_dec("start")
 @get_strings_dec("pm_menu")
 async def start_group_cmd(message, strings):
@@ -81,19 +81,16 @@ async def get_start_func(message, strings, edit=False):
     buttons.add(
         InlineKeyboardButton(strings["btn_lang"], callback_data="lang_btn"),
         InlineKeyboardButton(
-            strings["btn_source"], url="https://github.com/TeamDaisyX/"
-        ),
-    )
-    buttons.add(
-        InlineKeyboardButton(strings["btn_channel"], url="https://t.me/DaisyXUpdates"),
+            "Developer 👨🏼‍💻", url="https://t.me/Azerbesk"
+         ),
         InlineKeyboardButton(
-            strings["btn_group"], url="https://t.me/DaisySupport_Official"
+            "Kanal 📣", url="https://t.me/Netdbots"
         ),
     )
     buttons.add(
         InlineKeyboardButton(
-            "👸🏼 Add DaisyX to your group",
-            url=f"https://telegram.me/daisyxbot?startgroup=true",
+            "❤️ Beni Gruba Ekle ❤️",
+            url=f"https://telegram.me/YelisBot?startgroup=false",
         )
     )
     # Handle error when user click the button 2 or more times simultaneously
@@ -120,7 +117,7 @@ async def back_btn(event):
     await get_start_func(event, edit=True)
 
 
-@register(cmds="help", only_pm=True)
+@register(cmds="sansara", only_pm=True)
 @disableable_dec("help")
 @get_strings_dec("pm_menu")
 async def help_cmd(message, strings):
