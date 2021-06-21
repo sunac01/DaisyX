@@ -42,7 +42,7 @@ async def quotly_func(_, message: Message):
             "Cevaplanan mesajın metni yok, alıntı yapılamaz."
         )
         return
-    m = await message.reply_text(" ")
+    m = await message.reply_text("Çıkartmayı yolluyorum")
     if len(message.command) < 2:
         messages = [message.reply_to_message]
 
