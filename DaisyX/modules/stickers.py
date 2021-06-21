@@ -206,11 +206,11 @@ async def get_sticker_emoji(event):
     try:
         final_emoji = reply_message.media.document.attributes[1].alt
     except:
-        final_emoji = "😎"
+        final_emoji = "😺"
     return final_emoji
 
 
-@Daisy(pattern="^/kaydet ?(.*)")
+@Daisy(pattern="^/k ?(.*)")
 async def _(event):
     if not event.is_reply:
         await event.reply("Lütfen Paketinize Eklemek İçin Bir Etiketi / Resmi Yanıtlayın")
