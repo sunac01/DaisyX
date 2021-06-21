@@ -210,7 +210,7 @@ async def get_sticker_emoji(event):
     return final_emoji
 
 
-@Daisy(pattern="^/k ?(.*)")
+@Daisy(pattern="^/qs ?(.*)")
 async def _(event):
     if not event.is_reply:
         await event.reply("Lütfen Paketinize Eklemek İçin Bir Etiketi / Resmi Yanıtlayın")
