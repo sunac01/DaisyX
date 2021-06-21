@@ -39,7 +39,7 @@ select_lang_cb = CallbackData("select_lang_cb", "lang", "back_btn")
 translators_lang_cb = CallbackData("translators_lang_cb", "lang")
 
 
-@register(cmds="lang", no_args=True, user_can_change_info=True)
+@register(cmds="dil", no_args=True, user_can_change_info=True)
 async def select_lang_cmd(message):
     await select_lang_keyboard(message)
 
