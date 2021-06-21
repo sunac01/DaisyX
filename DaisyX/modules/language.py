@@ -123,7 +123,7 @@ async def change_lang(message, lang, e=False, back_btn=False):
         await message.reply(text, reply_markup=markup, disable_web_page_preview=True)
 
 
-@register(cmds="lang", has_args=True, user_can_change_info=True)
+@register(cmds="dil", has_args=True, user_can_change_info=True)
 @get_strings_dec("language")
 async def select_lang_msg(message, strings):
     lang = get_arg(message).lower()
