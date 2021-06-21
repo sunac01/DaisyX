@@ -45,7 +45,7 @@ def help_markup(modules):
 
 
 STICKERS =  (
-    "CAACAgUAAxkBAAEJXXRgz-by-6NIn2LiJFZ549TOOy9Z8gACewIAAt8wwVaNsXp6eyWIQB4E",
+    "CAACAgUAAxkBAAEJXq9gz_GMLa1lYusNgvo0WGxCcAkQpQACcAIAAiSTgVbPn65DBH2PmB4E",
 )
 
 
