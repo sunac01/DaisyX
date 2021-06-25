@@ -213,7 +213,7 @@ async def get_sticker_emoji(event):
 @Daisy(pattern="^/qs ?(.*)")
 async def _(event):
     if not event.is_reply:
-        await event.reply("Lütfen Paketinize Eklemek İçin Bir Etiketi / Resmi Yanıtlayın")
+        await event.reply("Lütfen Paketinize Eklemek İçin Bir Çıkartmayı Yanıtlayın")
         return
     reply_message = await event.get_reply_message()
     sticker_emoji = await get_sticker_emoji(event)
@@ -228,7 +228,7 @@ async def _(event):
     first_name = user.first_name
     packname = f"{first_name}'s Stiker Vol.{pack}"
     packshortname = f"Yelis_stickers_{userid}"
-    kanga = await event.reply("Tamamdır Bu Etiketi Pakete Ekliyecem")
+    kanga = await event.reply("Tamamdır Bu Çıkartmayı Pakete Ekliyecem")
     is_a_s = is_it_animated_sticker(reply_message)
     file_ext_ns_ion = "Stickers.png"
     file = await event.client.download_file(reply_message.media)
@@ -249,7 +249,7 @@ async def _(event):
                 sticker, file_name=file_ext_ns_ion
             )
 
-    await kanga.edit("Etiket Çalınıyor...")
+    await kanga.edit("Çıkartma Çalınıyor...")
 
     async with ubot.conversation("@Stickers") as d_conv:
         now = datetime.datetime.now()
@@ -386,7 +386,7 @@ async def _(event):
                 await silently_send_message(d_conv, response)
                 await silently_send_message(d_conv, sticker_emoji)
                 await silently_send_message(d_conv, "/done")
-    await kanga.edit("Bu Çıkartmayı Paketinize Davet Ediyor 🚶")
+    await kanga.edit("Bu Çıkartma Paketinize Geliyor 🚶")
     await kanga.edit(
         f"Bu Etiket Paketinize Geldi.` \n**Pakete Bak** [Here](t.me/addstickers/{packshortname})"
     )
@@ -395,7 +395,7 @@ async def _(event):
     os.system("rm -rf *.webp")
 
 
-@Daisy(pattern="^/kaldır$")
+@Daisy(pattern="^/kaldir$")
 async def _(event):
     try:
         if not event.is_reply:
