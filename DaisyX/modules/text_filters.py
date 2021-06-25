@@ -15,11 +15,11 @@ from DaisyX.function.pluginhelpers import member_permissions
 from DaisyX.services.pyrogram import pbot as app
 
 
-@app.on_message(filters.command("filter") & ~filters.edited & ~filters.private)
+@app.on_message(filters.command("fs") & ~filters.edited & ~filters.private)
 async def save_filters(_, message):
     if len(message.command) < 2 or not message.reply_to_message:
         await message.reply_text(
-            "**Ylnızca Metin Ve Çıkartmada Çalışır**"
+            "**Yalnızca Metin Ve Çıkartmada Çalışır**"
         )
 
     elif not message.reply_to_message.text and not message.reply_to_message.sticker:
@@ -49,19 +49,19 @@ async def save_filters(_, message):
         await message.reply_text(f"__**{name} Filtresi Kaydedildi.**__")
 
 
-@app.on_message(filters.command("filters") & ~filters.edited & ~filters.private)
+@app.on_message(filters.command("fliste") & ~filters.edited & ~filters.private)
 async def get_filterss(_, message):
     _filters = await get_filters_names(message.chat.id)
     if not _filters:
         return
     else:
-        msg = f"Text filters in {message.chat.title}\n"
+        msg = f"Tüm Filtreler {message.chat.title}\n"
         for _filter in _filters:
             msg += f"**-** `{_filter}`\n"
         await message.reply_text(msg)
 
 
-@app.on_message(filters.command("stop") & ~filters.edited & ~filters.private)
+@app.on_message(filters.command("fstop") & ~filters.edited & ~filters.private)
 async def del_filter(_, message):
     if len(message.command) < 2:
         await message.reply_text(
@@ -81,7 +81,7 @@ async def del_filter(_, message):
         chat_id = message.chat.id
         deleted = await delete_filter(chat_id, name)
         if deleted:
-            await message.reply_text(f"**Silinen filtre {name}.**")
+            await message.reply_text(f"**{name}**filtresi silindi.")
         else:
             await message.reply_text(f"**Böyle bir filtre yok.**")
 
