@@ -19,24 +19,24 @@ from DaisyX.services.pyrogram import pbot as app
 async def save_filters(_, message):
     if len(message.command) < 2 or not message.reply_to_message:
         await message.reply_text(
-            "Usage:\nReply to a text or sticker with /filter <textfilter name> to save it. \n\n NOTE: **TRY OUR NEW FILTER SYSTEM WITH /addfilter**"
+            "**Ylnızca Metin Ve Çıkartmada Çalışır**"
         )
 
     elif not message.reply_to_message.text and not message.reply_to_message.sticker:
         await message.reply_text(
-            "__**You can only save text or stickers as text filters.**__\n\n NOTE: **TRY /addfilter FOR OTHER FILE TYPES**"
+            "__**Yalnıca Metin Ve Çıkartmada Çalışır**"
         )
 
     elif len(await member_permissions(message.chat.id, message.from_user.id)) < 1:
-        await message.reply_text("**You don't have enough permissions**")
+        await message.reply_text("**Yeterli izniniz yok**")
     elif not "can_change_info" in (
         await member_permissions(message.chat.id, message.from_user.id)
     ):
-        await message.reply_text("**You don't have enough permissions**")
+        await message.reply_text("**Yeterli izniniz yok**")
     else:
         name = message.text.split(None, 1)[1].strip()
         if not name:
-            await message.reply_text("**Usage**\n__/filter <textfilter name>__")
+            await message.reply_text("**Kullanım**/filtre filtre adı")
             return
         _type = "text" if message.reply_to_message.text else "sticker"
         _filter = {
@@ -46,7 +46,7 @@ async def save_filters(_, message):
             else message.reply_to_message.sticker.file_id,
         }
         await save_filter(message.chat.id, name, _filter)
-        await message.reply_text(f"__**Saved filter {name}.**__")
+        await message.reply_text(f"__**{name} Filtresi Kaydedildi.**__")
 
 
 @app.on_message(filters.command("filters") & ~filters.edited & ~filters.private)
@@ -65,25 +65,25 @@ async def get_filterss(_, message):
 async def del_filter(_, message):
     if len(message.command) < 2:
         await message.reply_text(
-            "**Usage**\n__/stop <textfilter name> \nIf filter /delfilter <filtername>__"
+            "**Kullanım**/stop filtre adı"
         )
 
     elif len(await member_permissions(message.chat.id, message.from_user.id)) < 1:
-        await message.reply_text("**You don't have enough permissions**")
+        await message.reply_text("**Yeterli izniniz yok**")
 
     else:
         name = message.text.split(None, 1)[1].strip()
         if not name:
             await message.reply_text(
-                "**Usage**\n__/stop <textfilter name> \nIf filter /delfilter <filtername> __"
+                "**Kullanım**/stop filtre adı"
             )
             return
         chat_id = message.chat.id
         deleted = await delete_filter(chat_id, name)
         if deleted:
-            await message.reply_text(f"**Deleted filter {name}.**")
+            await message.reply_text(f"**Silinen filtre {name}.**")
         else:
-            await message.reply_text(f"**No such filter.**")
+            await message.reply_text(f"**Böyle bir filtre yok.**")
 
 
 @app.on_message(
