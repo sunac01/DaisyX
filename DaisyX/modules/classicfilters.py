@@ -149,7 +149,7 @@ async def on_snip(event):
                 last_triggered_filters[event.chat_id].remove(name)
 
 
-@register(pattern="^/cfilter (.*)")
+@register(pattern="^/filtre (.*)")
 async def on_snip_save(event):
     if event.is_group:
         if not await can_change_info(message=event):
@@ -199,17 +199,17 @@ async def on_snip_save(event):
         )
 
         await event.reply(
-            f"Classic Filter {name} saved successfully. you can get it with {name}\nNote: Try our new filter system /addfilter "
+            f"{name} Filtresi Başarıyla Kaydedildi."
         )
 
     else:
 
         await event.reply(
-            "Usage: Reply to user message with /cfilter <text>.. \nNot Recomended use new filter system /savefilter"
+            "Kullanım: /filter metin ile kullanıcı mesajını yanıtlayın .."
         )
 
 
-@register(pattern="^/stopcfilter (.*)")
+@register(pattern="^/fsil (.*)")
 async def on_snip_delete(event):
     if event.is_group:
         if not await can_change_info(message=event):
@@ -220,10 +220,10 @@ async def on_snip_delete(event):
 
     remove_filter(event.chat_id, name)
 
-    await event.reply(f"Filter **{name}** deleted successfully")
+    await event.reply(f"**{name}** filtresi başarıyla silindi")
 
 
-@register(pattern="^/cfilters$")
+@register(pattern="^/fliste$")
 async def on_snip_list(event):
     if event.is_group:
         pass
@@ -231,7 +231,7 @@ async def on_snip_list(event):
         return
     all_snips = get_all_filters(event.chat_id)
 
-    OUT_STR = "Available Classic Filters in the Current Chat:\n"
+    OUT_STR = "Tüm Filtrelerin Listesi:\n"
 
     if len(all_snips) > 0:
 
@@ -241,7 +241,7 @@ async def on_snip_list(event):
 
     else:
 
-        OUT_STR = "No Classic Filters in this chat. "
+        OUT_STR = "Bu sohbette Filtre yok. "
 
     if len(OUT_STR) > 4096:
 
@@ -254,7 +254,7 @@ async def on_snip_list(event):
                 out_file,
                 force_document=True,
                 allow_cache=False,
-                caption="Available Classic Filters in the Current Chat",
+                caption="Tüm Filtreler",
                 reply_to=event,
             )
 
@@ -263,7 +263,7 @@ async def on_snip_list(event):
         await event.reply(OUT_STR)
 
 
-@register(pattern="^/stopallcfilters$")
+@register(pattern="^/fkaldir$")
 async def on_all_snip_delete(event):
     if event.is_group:
         if not await can_change_info(message=event):
@@ -271,7 +271,7 @@ async def on_all_snip_delete(event):
     else:
         return
     remove_all_filters(event.chat_id)
-    await event.reply(f"Classic Filter in current chat deleted !")
+    await event.reply(f"Tüm Filtreler Başarıyla Kaldırıldı!")
 
 
 file_help = os.path.basename(__file__)
