@@ -46,7 +46,7 @@ async def save_filters(_, message):
             else message.reply_to_message.sticker.file_id,
         }
         await save_filter(message.chat.id, name, _filter)
-        await message.reply_text(f"__**{name} Filtresi Kaydedildi.**__")
+        await message.reply_text(f"**{name}** Filtresi Kaydedildi.")
 
 
 @app.on_message(filters.command("fliste") & ~filters.edited & ~filters.private)
@@ -81,7 +81,7 @@ async def del_filter(_, message):
         chat_id = message.chat.id
         deleted = await delete_filter(chat_id, name)
         if deleted:
-            await message.reply_text(f"**{name}**filtresi silindi.")
+            await message.reply_text(f"**{name}** filtresi silindi.")
         else:
             await message.reply_text(f"**Böyle bir filtre yok.**")
 
