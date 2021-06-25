@@ -15,7 +15,7 @@ from DaisyX.function.pluginhelpers import member_permissions
 from DaisyX.services.pyrogram import pbot as app
 
 
-@app.on_message(filters.command("fs") & ~filters.edited & ~filters.private)
+@app.on_message(filters.command("f") & ~filters.edited & ~filters.private)
 async def save_filters(_, message):
     if len(message.command) < 2 or not message.reply_to_message:
         await message.reply_text(
@@ -61,7 +61,7 @@ async def get_filterss(_, message):
         await message.reply_text(msg)
 
 
-@app.on_message(filters.command("fstop") & ~filters.edited & ~filters.private)
+@app.on_message(filters.command("fsil") & ~filters.edited & ~filters.private)
 async def del_filter(_, message):
     if len(message.command) < 2:
         await message.reply_text(
