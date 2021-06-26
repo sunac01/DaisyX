@@ -119,7 +119,7 @@ async def check_msg(message):
             filters = db.filters.find({"chat_id": chat_id, "handler": handler})
             async for filter in filters:
                 action = filter["action"]
-                await FILTERS_ACTIONS[action]["handle"](message, chat, filter)
+                await FILTERS_ACTIONS[action]["handler"](message, chat, filter)
 
 
 @register(cmds=["f"], is_admin=True, user_can_change_info=True)
@@ -163,7 +163,6 @@ async def add_handler(message, chat, strings):
                 callback_data=filter_action_cp.new(filter_id=filter_id),
             )
         )
-    buttons.add(InlineKeyboardButton(strings["cancel_btn"], callback_data="cancel"))
 
     user_id = message.from_user.id
     chat_id = chat["chat_id"]
