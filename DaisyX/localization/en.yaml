@@ -166,9 +166,9 @@ STRINGS:
     help_btn: "Click me for help!"
     help_txt: "Click the button below for help!"
 
-    delmsg_filter_title: 'Delete the message'
-    send_text: Please send the reply message!
-    replymsg_filter_title: 'Reply to message'
+    delmsg_filter_title: 'Bu Mesaj Silinsin'
+    send_text: Lütfen cevap mesajını gönderin!
+    replymsg_filter_title: 'Bu Mesajı Filtre Yap'
 
     send_customised_reason: Send the <i>reason</i> you want to include in action message. "<code>None</code>" for <i>no reason</i> to be given!
     expected_text: Expected a text message!
