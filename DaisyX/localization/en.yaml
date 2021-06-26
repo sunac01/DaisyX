@@ -71,38 +71,38 @@ STRINGS:
     clean_notes_disabled: "Cleaning notes currently is <b>disabled</b> in <b>{chat_name}</b>"
 
     # Filter
-    filters_title: 'Send a note'
-    filters_setup_start: 'Please send a note name.'
+    filters_title: 'Not Gönder'
+    filters_setup_start: 'Lütfen bir not adı gönderin.'
 
     #delmsg_no_arg: "deletemsg button can contain only 'admin' or 'user' argument!"
     #bot_msg: "I'm sorry, I am not able to get this message, probably this a other bot's message, so I can't save it."
   filters:
-    no_filters_found: "No filters was found in <b>{chat_name}</b>!"
+    no_filters_found: "Filtre bulunamadı <b>{chat_name}</b>!"
 
     # /addfilter
-    anon_detected: Being anonymous admin, you cannot add new filters, use connections instead.
-    regex_too_slow: "Your regex pattern matches too slowly (more than the half of second) and it can't be added!"
-    cancel_btn: "🛑 Cancel"
+    anon_detected: "Anonim yönetici olarak yeni filtreler ekleyemezsiniz, bunun yerine bağlantıları kullanabilirsiniz."
+    regex_too_slow: "Normal ifade kalıbınız çok yavaş eşleşiyor (saniyenin yarısından fazla) ve eklenemiyor!"
+    cancel_btn: "🛑 Çıkış"
     adding_filter: |
-      Adding filter <code>{handler}</code> in <b>{chat_name}</b>
-      Select action below:
-    saved: "New filter was successfully saved!"
+      <b>{chat_name}</b> içinde <code>{handler}</code> filtresi ekleme
+      Aşağıdan işlemi seçin:
+    saved: "Yeni filtre başarıyla kaydedildi!"
 
     # /filters
-    list_filters: "Filters in <b>{chat_name}</b>:\n"
+    list_filters: "<b>{chat_name}</b> grubundaki filtreler:\n"
 
     # /delfilter
-    no_such_filter: I can't find that filter in <b>{chat_name}</b>, you can check what filters are enabled with the <code>/filters</code> command.
-    del_filter: "Filter with handler '<code>{handler}</code>' was successfully removed!"
+    no_such_filter: "Bu filtreyi <b>{chat_name}</b> içinde bulamıyorum, etkin filtreleri <code>/fliste</code> komutuyla kontrol edin."
+    del_filter: "'<code>{handler}</code>' filtresi başarıyla silindi !"
     select_filter_to_remove: |
-      I have found many filters with handler '<code>{handler}</code>'.
-      Please select one to remove:
+      '<code>{handlerSu}</code>' işleyicisine sahip birçok filtre buldum.
+      Lütfen kaldırmak için birini seçin:
     # /delfilters or /delallfilters
-    not_chat_creator: Only chat creators can use this command!
-    delall_header: This would delete all filters in this chat. This IS irreversible.
-    confirm_yes: ⚠ Delete all
-    confirm_no: ❌ Cancel
-    delall_success: Successfully deleted all ({count}) filters in this chat!
+    not_chat_creator: Bu komutu yalnızca sohbet yaratıcıları kullanabilir!
+    delall_header: Sohbetteki Tüm Filtreler Silinsin Mi ? 
+    confirm_yes: ⚠ Hepsini Sil
+    confirm_no: ❌ Çıkış
+    delall_success: Bu sohbetteki ({count}) tüm filtreler başarıyla silindi!
 
   warns:
     # /warn
