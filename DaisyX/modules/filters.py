@@ -122,7 +122,7 @@ async def check_msg(message):
                 await FILTERS_ACTIONS[action]["handle"](message, chat, filter)
 
 
-@register(cmds=["addfilter", "newfilter"], is_admin=True, user_can_change_info=True)
+@register(cmds=["f"], is_admin=True, user_can_change_info=True)
 @need_args_dec()
 @chat_connection(only_groups=True, admin=True)
 @get_strings_dec("filters")
@@ -190,7 +190,7 @@ async def register_action(
     event, chat, strings, callback_data=None, state=None, **kwargs
 ):
     if not await is_user_admin(event.message.chat.id, event.from_user.id):
-        return await event.answer("You are not admin to do this")
+        return await event.answer("Bunu Yapmak İçin Admin Deilsin")
     filter_id = callback_data["filter_id"]
     action = FILTERS_ACTIONS[filter_id]
 
@@ -201,7 +201,7 @@ async def register_action(
 
     if not handler:
         return await event.answer(
-            "Something went wrong! Please try again!", show_alert=True
+            "Bir şeyler yanlış gitti!", show_alert=True
         )
 
     data = {"chat_id": chat_id, "handler": handler, "action": filter_id}
@@ -262,7 +262,7 @@ async def setup_end(message, chat, strings, state=None, **kwargs):
     await save_filter(message, data, strings)
 
 
-@register(cmds=["filters", "listfilters"])
+@register(cmds=["fliste"])
 @chat_connection(only_groups=True)
 @get_strings_dec("filters")
 async def list_filters(message, chat, strings):
@@ -282,7 +282,7 @@ async def list_filters(message, chat, strings):
     await message.reply(text + filters_text)
 
 
-@register(cmds="delfilter", is_admin=True, user_can_change_info=True)
+@register(cmds="fsil", is_admin=True, user_can_change_info=True)
 @need_args_dec()
 @chat_connection(only_groups=True, admin=True)
 @get_strings_dec("filters")
@@ -329,7 +329,7 @@ async def del_filter(message, chat, strings):
 @get_strings_dec("filters")
 async def del_filter_cb(event, chat, strings, callback_data=None, **kwargs):
     if not await is_user_admin(event.message.chat.id, event.from_user.id):
-        return await event.answer("You are not admin to do this")
+        return await event.answer("Bunu yapmak için yönetici değilsin.")
     filter_id = ObjectId(callback_data["id"])
     filter = await db.filters.find_one({"_id": filter_id})
     await db.filters.delete_one({"_id": filter_id})
@@ -340,7 +340,7 @@ async def del_filter_cb(event, chat, strings, callback_data=None, **kwargs):
     return
 
 
-@register(cmds=["delfilters", "delallfilters"])
+@register(cmds=["fkaldir"])
 @get_strings_dec("filters")
 async def delall_filters(message: Message, strings: dict):
     if not await is_chat_creator(message, message.chat.id, message.from_user.id):
