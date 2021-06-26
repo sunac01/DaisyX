@@ -75,7 +75,7 @@ async def update_handlers_cache(chat_id):
 
 @register()
 async def check_msg(message):
-    log.debug("Running check msg for filters function.")
+    log.debug("Filtreler işlevi için kontrol mesajı çalıştırılıyor.")
     chat = await get_connected_chat(message, only_groups=True)
     if "err_msg" in chat or message.chat.type == "private":
         return
@@ -175,7 +175,7 @@ async def add_handler(message, chat, strings):
 async def save_filter(message, data, strings):
     if await db.filters.find_one(data):
         # prevent saving duplicate filter
-        await message.reply("Duplicate filter!")
+        await message.reply("Filtre Yenilendi")
         return
 
     await db.filters.insert_one(data)
