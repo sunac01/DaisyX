@@ -95,7 +95,7 @@ STRINGS:
     no_such_filter: "Bu filtreyi <b>{chat_name}</b> içinde bulamıyorum, etkin filtreleri <code>/fliste</code> komutuyla kontrol edin."
     del_filter: "'<code>{handler}</code>' filtresi başarıyla silindi !"
     select_filter_to_remove: |
-      '<code>{handlerSu}</code>' işleyicisine sahip birçok filtre buldum.
+      '<code>{handler}</code>' işleyicisine sahip birçok filtre buldum.
       Lütfen kaldırmak için birini seçin:
     # /delfilters or /delallfilters
     not_chat_creator: Bu komutu yalnızca sohbet yaratıcıları kullanabilir!
