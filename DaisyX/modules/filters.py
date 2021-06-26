@@ -119,7 +119,7 @@ async def check_msg(message):
             filters = db.filters.find({"chat_id": chat_id, "handler": handler})
             async for filter in filters:
                 action = filter["action"]
-                await FILTERS_ACTIONS[action]["handler"](message, chat, filter)
+                await FILTERS_ACTIONS[action]["handle"](message, chat, filter)
 
 
 @register(cmds=["f"], is_admin=True, user_can_change_info=True)
