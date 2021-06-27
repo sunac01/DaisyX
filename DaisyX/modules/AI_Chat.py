@@ -286,7 +286,7 @@ async def inuka(client, message):
     test = rm
     if not "en" in lan and not lan == "":
         try:
-            test = translator.translate(test, lang_tgt="en)
+            test = translator.translate(test, lang_tgt="en")
         except:
             return
 
