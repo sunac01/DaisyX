@@ -120,7 +120,7 @@ async def hmm(_, message):
         )
 
     elif status == "OFF" or status == "off" or status == "Off":
-        lel = await edit_or_reply(message, "`Processing...`")
+        lel = await edit_or_reply(message, "`İşleniyor...`")
         Escobar = remove_chat(int(message.chat.id))
         if not Escobar:
             await lel.edit("Yelis AI Bu Sohbette Etkinleştirilmedi")
@@ -217,7 +217,7 @@ async def hmm(client, message):
         except:
             return
         test = rm
-        if not "tr" in lan and not lan == "tr":
+        if not "en" in lan and not lan == "":
             try:
                 test = translator.translate(test, lang_tgt="tr")
             except:
@@ -232,7 +232,7 @@ async def hmm(client, message):
         response = response.replace("Aco", "Yelis")
         response = response.replace("aco", "Yelis")
         pro = response
-        if not "tr" in lan and not lan == "tr":
+        if not "en" in lan and not lan == "":
             try:
                 pro = translator.translate(pro, lang_tgt=lan[0])
             except:
@@ -284,7 +284,7 @@ async def inuka(client, message):
     except:
         return
     test = rm
-    if not "tr" in lan and not lan == "tr":
+    if not "en" in lan and not lan == "":
         try:
             test = translator.translate(test, lang_tgt="tr")
         except:
@@ -301,7 +301,7 @@ async def inuka(client, message):
     response = response.replace("aco", "Yelis")
 
     pro = response
-    if not "tr" in lan and not lan == "tr":
+    if not "en" in lan and not lan == "":
         pro = translator.translate(pro, lang_tgt=lan[0])
     try:
         await daisyx.send_chat_action(message.chat.id, "typing")
@@ -356,7 +356,7 @@ async def inuka(client, message):
     except:
         return
     test = rm
-    if not "tr" in lan and not lan == "tr":
+    if not "en" in lan and not lan == "":
         try:
             test = translator.translate(test, lang_tgt="tr")
         except:
