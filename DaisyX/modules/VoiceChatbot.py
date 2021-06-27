@@ -30,27 +30,27 @@ async def ai_lycia(url):
     return ai_name
 
 
-@LYCIA.on_message(filters.command("daisy"))
+@LYCIA.on_message(filters.command("yelis"))
 async def Lycia(_, message):
     if len(message.command) < 2:
-        await message.reply_text("DaisyX AI Voice Chatbot")
+        await message.reply_text("Yelis Sohbet Robotu")
         return
     text = message.text.split(None, 1)[1]
     lycia = text.replace(" ", "%20")
-    m = await message.reply_text("Daisyx Is Best...")
+    m = await message.reply_text("Yelis En İyisidir")
     try:
         L = await fetch(
-            f"https://api.affiliateplus.xyz/api/chatbot?message={lycia}&botname=Daisy&ownername=TeamDaisyX&user=1"
+            f"https://api.affiliateplus.xyz/api/chatbot?message={lycia}&botname=Yelis&ownername=Azerbesk&user=1"
         )
         chatbot = L["message"]
-        VoiceAi = f"https://lyciavoice.herokuapp.com/lycia?text={chatbot}&lang=hi"
+        VoiceAi = f"https://lyciavoice.herokuapp.com/lycia?text={chatbot}&lang=Merhaba"
         name = "DaisyX"
     except Exception as e:
         await m.edit(str(e))
         return
-    await m.edit("Made By @madepranav...")
+    await m.edit("Yapımcı @Azerbesk...")
     LyciaVoice = await ai_lycia(VoiceAi)
-    await m.edit("Repyping...")
+    await m.edit("Kopyalanıyor...")
     await message.reply_audio(audio=LyciaVoice, title=chatbot, performer=name)
     os.remove(LyciaVoice)
     await m.delete()
