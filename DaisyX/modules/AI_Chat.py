@@ -217,7 +217,7 @@ async def hmm(client, message):
         except:
             return
         test = rm
-        if not "en" in lan and not lan == "":
+        if not "en" in lan and not lan == "tr":
             try:
                 test = translator.translate(test, lang_tgt="tr")
             except:
@@ -284,7 +284,7 @@ async def inuka(client, message):
     except:
         return
     test = rm
-    if not "en" in lan and not lan == "":
+    if not "en" in lan and not lan == "tr":
         try:
             test = translator.translate(test, lang_tgt="tr")
         except:
@@ -301,7 +301,7 @@ async def inuka(client, message):
     response = response.replace("aco", "Yelis")
 
     pro = response
-    if not "en" in lan and not lan == "":
+    if not "en" in lan and not lan == "tr":
         pro = translator.translate(pro, lang_tgt=lan[0])
     try:
         await daisyx.send_chat_action(message.chat.id, "typing")
@@ -356,7 +356,7 @@ async def inuka(client, message):
     except:
         return
     test = rm
-    if not "en" in lan and not lan == "":
+    if not "en" in lan and not lan == "tr":
         try:
             test = translator.translate(test, lang_tgt="tr")
         except:
