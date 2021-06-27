@@ -56,7 +56,7 @@ async def fetch(url):
                         data = await resp.text()
             return data
     except:
-        print("AI response Timeout")
+        print("AI yanıtı Zaman Aşımı")
         return
 
 
@@ -77,7 +77,7 @@ async def hmm(client, message):
     required_file_name = message.download()
     if IBM_WATSON_CRED_URL is None or IBM_WATSON_CRED_PASSWORD is None:
         await message.reply(
-            "You need to set the required ENV variables for this module. \nModule stopping"
+            "Bu modül için gerekli ENV değişkenlerini ayarlamanız gerekir. \nModule durduruldu"
         )
     else:
         headers = {
@@ -104,29 +104,29 @@ async def hmm(_, message):
     global daisy_chats
     if len(message.command) != 2:
         await message.reply_text(
-            "I only recognize `/chatbot on` and /chatbot `off only`"
+            "Yalnızca /chatbot on ve /chatbot off öğelerini tanıyorum"
         )
         message.continue_propagation()
     status = message.text.split(None, 1)[1]
     chat_id = message.chat.id
     if status == "ON" or status == "on" or status == "On":
-        lel = await edit_or_reply(message, "`Processing...`")
+        lel = await edit_or_reply(message, "'İşleniyor...'")
         lol = add_chat(int(message.chat.id))
         if not lol:
-            await lel.edit("Daisy AI Already Activated In This Chat")
+            await lel.edit(" Yelis AI Bu Sohbette Zaten Etkinleştirildi")
             return
         await lel.edit(
-            f"Daisy AI Successfully Added For Users In The Chat {message.chat.id}"
+            f"Harika Yelis Artık Sohbette Konuşacak  {message.chat.id}"
         )
 
     elif status == "OFF" or status == "off" or status == "Off":
         lel = await edit_or_reply(message, "`Processing...`")
         Escobar = remove_chat(int(message.chat.id))
         if not Escobar:
-            await lel.edit("Daisy AI Was Not Activated In This Chat")
+            await lel.edit("Yelis AI Bu Sohbette Etkinleştirilmedi")
             return
         await lel.edit(
-            f"Daisy AI Successfully Deactivated For Users In The Chat {message.chat.id}"
+            f"Yelis AI, Sohbetteki Kullanıcılar İçin Başarıyla Devre Dışı Bırakıldı {message.chat.id}"
         )
 
     elif status == "EN" or status == "en" or status == "english":
@@ -138,7 +138,7 @@ async def hmm(_, message):
         message.continue_propagation()
     else:
         await message.reply_text(
-            "I only recognize `/chatbot on` and /chatbot `off only`"
+            "Yalnızca /chatbot on ve /chatbot off öğelerini tanıyorum"
         )
 
 
@@ -168,13 +168,13 @@ async def hmm(client, message):
         message.continue_propagation()
     if chat_id in en_chats:
         test = msg
-        test = test.replace("daisy", "Aco")
-        test = test.replace("Daisy", "Aco")
+        test = test.replace("yelis", "Aco")
+        test = test.replace("Yelis", "Aco")
         response = await lunaQuery(
             test, message.from_user.id if message.from_user else 0
         )
-        response = response.replace("Aco", "Daisy")
-        response = response.replace("aco", "Daisy")
+        response = response.replace("Aco", "Yelis")
+        response = response.replace("aco", "Yelis")
 
         pro = response
         try:
@@ -217,22 +217,22 @@ async def hmm(client, message):
         except:
             return
         test = rm
-        if not "en" in lan and not lan == "":
+        if not "tr" in lan and not lan == "tr":
             try:
-                test = translator.translate(test, lang_tgt="en")
+                test = translator.translate(test, lang_tgt="tr")
             except:
                 return
         # test = emoji.demojize(test.strip())
 
-        test = test.replace("daisy", "Aco")
-        test = test.replace("Daisy", "Aco")
+        test = test.replace("Yelis", "Aco")
+        test = test.replace("Yelis", "Aco")
         response = await lunaQuery(
             test, message.from_user.id if message.from_user else 0
         )
-        response = response.replace("Aco", "Daisy")
-        response = response.replace("aco", "Daisy")
+        response = response.replace("Aco", "Yelis")
+        response = response.replace("aco", "Yelis")
         pro = response
-        if not "en" in lan and not lan == "":
+        if not "tr" in lan and not lan == "tr":
             try:
                 pro = translator.translate(pro, lang_tgt=lan[0])
             except:
@@ -284,24 +284,24 @@ async def inuka(client, message):
     except:
         return
     test = rm
-    if not "en" in lan and not lan == "":
+    if not "tr" in lan and not lan == "tr":
         try:
-            test = translator.translate(test, lang_tgt="en")
+            test = translator.translate(test, lang_tgt="tr")
         except:
             return
 
     # test = emoji.demojize(test.strip())
 
     # Kang with the credits bitches @InukaASiTH
-    test = test.replace("daisy", "Aco")
-    test = test.replace("Daisy", "Aco")
+    test = test.replace("yelis", "Aco")
+    test = test.replace("Yelis", "Aco")
 
     response = await lunaQuery(test, message.from_user.id if message.from_user else 0)
-    response = response.replace("Aco", "Daisy")
-    response = response.replace("aco", "Daisy")
+    response = response.replace("Aco", "Yelis")
+    response = response.replace("aco", "Yelis")
 
     pro = response
-    if not "en" in lan and not lan == "":
+    if not "tr" in lan and not lan == "tr":
         pro = translator.translate(pro, lang_tgt=lan[0])
     try:
         await daisyx.send_chat_action(message.chat.id, "typing")
@@ -311,7 +311,7 @@ async def inuka(client, message):
 
 
 @daisyx.on_message(
-    filters.regex("Daisy|daisy|DaisyX|daisyx|Daisyx")
+    filters.regex("Yelis|yelis|yeliss|Yeliss|Yelisx")
     & ~filters.bot
     & ~filters.via_bot
     & ~filters.forwarded
@@ -356,22 +356,22 @@ async def inuka(client, message):
     except:
         return
     test = rm
-    if not "en" in lan and not lan == "":
+    if not "tr" in lan and not lan == "tr":
         try:
-            test = translator.translate(test, lang_tgt="en")
+            test = translator.translate(test, lang_tgt="tr")
         except:
             return
 
     # test = emoji.demojize(test.strip())
 
-    test = test.replace("daisy", "Aco")
-    test = test.replace("Daisy", "Aco")
+    test = test.replace("yelis", "Aco")
+    test = test.replace("Yelis", "Aco")
     response = await lunaQuery(test, message.from_user.id if message.from_user else 0)
-    response = response.replace("Aco", "Daisy")
-    response = response.replace("aco", "Daisy")
+    response = response.replace("Aco", "Yelis")
+    response = response.replace("aco", "Yelis")
 
     pro = response
-    if not "en" in lan and not lan == "":
+    if not "tr" in lan and not lan == "tr":
         try:
             pro = translator.translate(pro, lang_tgt=lan[0])
         except Exception:
