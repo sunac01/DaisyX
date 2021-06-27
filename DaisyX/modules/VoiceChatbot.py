@@ -20,7 +20,7 @@ async def fetch(url):
 
 
 async def ai_lycia(url):
-    ai_name = "Daisyx.mp3"
+    ai_name = "Yelis.mp3"
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as resp:
             if resp.status == 200:
@@ -33,7 +33,7 @@ async def ai_lycia(url):
 @LYCIA.on_message(filters.command("yelis"))
 async def Lycia(_, message):
     if len(message.command) < 2:
-        await message.reply_text("Yelis Sohbet Robotu")
+        await message.reply_text("Burdayım")
         return
     text = message.text.split(None, 1)[1]
     lycia = text.replace(" ", "%20")
@@ -44,7 +44,7 @@ async def Lycia(_, message):
         )
         chatbot = L["message"]
         VoiceAi = f"https://lyciavoice.herokuapp.com/lycia?text={chatbot}&lang=Merhaba"
-        name = "DaisyX"
+        name = "Yelis"
     except Exception as e:
         await m.edit(str(e))
         return
