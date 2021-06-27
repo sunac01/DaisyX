@@ -129,12 +129,12 @@ async def hmm(_, message):
             f"Yelis AI, Sohbetteki Kullanıcılar İçin Başarıyla Devre Dışı Bırakıldı {message.chat.id}"
         )
 
-    elif status == "EN" or status == "en" or status == "english":
+    elif status == "TR" or status == "tr" or status == "turkish":
         if not chat_id in en_chats:
             en_chats.append(chat_id)
-            await message.reply_text("English AI chat Enabled!")
+            await message.reply_text("Türkçe AI chat Açıldı!")
             return
-        await message.reply_text("AI Chat Is Already Disabled.")
+        await message.reply_text(" Türkçe Chat Kapandı")
         message.continue_propagation()
     else:
         await message.reply_text(
@@ -217,9 +217,9 @@ async def hmm(client, message):
         except:
             return
         test = rm
-        if not "en" in lan and not lan == "tr":
+        if not "en" in lan and not lan == "":
             try:
-                test = translator.translate(test, lang_tgt="tr")
+                test = translator.translate(test, lang_tgt="en")
             except:
                 return
         # test = emoji.demojize(test.strip())
@@ -284,9 +284,9 @@ async def inuka(client, message):
     except:
         return
     test = rm
-    if not "en" in lan and not lan == "tr":
+    if not "en" in lan and not lan == "":
         try:
-            test = translator.translate(test, lang_tgt="tr")
+            test = translator.translate(test, lang_tgt="en)
         except:
             return
 
@@ -301,7 +301,7 @@ async def inuka(client, message):
     response = response.replace("aco", "Yelis")
 
     pro = response
-    if not "en" in lan and not lan == "tr":
+    if not "en" in lan and not lan == "":
         pro = translator.translate(pro, lang_tgt=lan[0])
     try:
         await daisyx.send_chat_action(message.chat.id, "typing")
@@ -356,9 +356,9 @@ async def inuka(client, message):
     except:
         return
     test = rm
-    if not "en" in lan and not lan == "tr":
+    if not "en" in lan and not lan == "":
         try:
-            test = translator.translate(test, lang_tgt="tr")
+            test = translator.translate(test, lang_tgt="en")
         except:
             return
 
@@ -371,7 +371,7 @@ async def inuka(client, message):
     response = response.replace("aco", "Yelis")
 
     pro = response
-    if not "tr" in lan and not lan == "tr":
+    if not "en" in lan and not lan == "":
         try:
             pro = translator.translate(pro, lang_tgt=lan[0])
         except Exception:
