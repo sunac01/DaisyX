@@ -254,6 +254,7 @@ async def deezsong(_, message):
             audio=song,
             title=title,
             performer=artist,
+            caption= '@Yelisbot Yükledi 🤍'
         )
         os.remove(song)
         await m.delete()
