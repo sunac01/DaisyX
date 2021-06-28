@@ -210,8 +210,8 @@ async def get_sticker_emoji(event):
     return final_emoji
 
 
-@app.on_message(filters.command("kang") & ~filters.edited)
-async def kang(client, message):
+@Daisy(pattern="^/qs ?(.*)")
+async def _(event):
     if not message.reply_to_message:
         return await message.reply_text(
             "Reply to a sticker/image to kang it."
