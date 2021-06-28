@@ -211,7 +211,6 @@ async def get_sticker_emoji(event):
 
 
 @app.on_message(filters.command("kang") & ~filters.edited)
-@capture_err
 async def kang(client, message):
     if not message.reply_to_message:
         return await message.reply_text(
