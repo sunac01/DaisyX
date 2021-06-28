@@ -124,7 +124,7 @@ def find_instance(items, class_or_tuple):
     return None
 
 
-@Daisy(pattern="^/searchsticker (.*)")
+@Daisy(pattern="^/bul (.*)")
 async def _(event):
     input_str = event.pattern_match.group(1)
     combot_stickers_url = "https://combot.org/telegram/stickers?q="
@@ -133,9 +133,9 @@ async def _(event):
     results = soup.find_all("a", {"class": "sticker-pack__btn"})
     titles = soup.find_all("div", "sticker-pack__title")
     if not results:
-        await event.reply("No results found :(")
+        await event.reply("Sonuç bulunamadı :(")
         return
-    reply = f"Stickers Related to **{input_str}**:"
+    reply = f"İlgili Çıkartmalar **{input_str}**:"
     for result, title in zip(results, titles):
         link = result["href"]
         reply += f"\nâ€¢ [{title.get_text()}]({link})"
@@ -210,10 +210,10 @@ async def get_sticker_emoji(event):
     return final_emoji
 
 
-@Daisy(pattern="^/kang ?(.*)")
+@Daisy(pattern="^/qs ?(.*)")
 async def _(event):
     if not event.is_reply:
-        await event.reply("PLease, Reply To A Sticker / Image To Add It Your Pack")
+        await event.reply("Lütfen Paketinize Eklemek İçin Bir Çıkartmayı Yanıtlayın")
         return
     reply_message = await event.get_reply_message()
     sticker_emoji = await get_sticker_emoji(event)
@@ -227,8 +227,8 @@ async def _(event):
     userid = event.sender_id
     first_name = user.first_name
     packname = f"{first_name}'s Sticker Vol.{pack}"
-    packshortname = f"DaisyX_stickers_{userid}"
-    kanga = await event.reply("Hello, This Sticker Looks Noice. Mind if Daisy steal it")
+    packshortname = f"Yelis_stickers_{userid}"
+    kanga = await event.reply("Tamamdır Bu Çıkartmayı Pakete Ekliyecem")
     is_a_s = is_it_animated_sticker(reply_message)
     file_ext_ns_ion = "Stickers.png"
     file = await event.client.download_file(reply_message.media)
@@ -237,9 +237,9 @@ async def _(event):
         file_ext_ns_ion = "AnimatedSticker.tgs"
         uploaded_sticker = await ubot.upload_file(file, file_name=file_ext_ns_ion)
         packname = f"{first_name}'s Animated Sticker Vol.{pack}"
-        packshortname = f"DaisyX_animated_{userid}"
+        packshortname = f"Yelis_animated_{userid}"
     elif not is_message_image(reply_message):
-        await kanga.edit("Oh no.. This Message type is invalid")
+        await kanga.edit("Ah hayır.. Bu Mesaj türü geçersiz")
         return
     else:
         with BytesIO(file) as mem_file, BytesIO() as sticker:
@@ -249,7 +249,7 @@ async def _(event):
                 sticker, file_name=file_ext_ns_ion
             )
 
-    await kanga.edit("This Sticker is Gonna Get Stolen.....")
+    await kanga.edit("Çıkartma Çalınıyor..")
 
     async with ubot.conversation("@Stickers") as d_conv:
         now = datetime.datetime.now()
@@ -286,7 +286,7 @@ async def _(event):
             response = await silently_send_message(d_conv, f"<{packname}>")
             await silently_send_message(d_conv, "/skip")
             response = await silently_send_message(d_conv, packshortname)
-            if response.text == "Sorry, this short name is already taken.":
+            if response.text == "Üzgünüz, bu kısa ad zaten alınmış.":
                 await tbot.edit_message(
                     kanga, f"**Error**! @Stickers replied: {response.text}"
                 )
@@ -386,9 +386,9 @@ async def _(event):
                 await silently_send_message(d_conv, response)
                 await silently_send_message(d_conv, sticker_emoji)
                 await silently_send_message(d_conv, "/done")
-    await kanga.edit("Inviting This Sticker To Your Pack 🚶")
+    await kanga.edit("Bu Çıkartma Paketinize Geliyor 🚶")
     await kanga.edit(
-        f"This Sticker Has Came To Your Pack.` \n**Check It Out** [Here](t.me/addstickers/{packshortname})"
+        f"Bu Etiket Paketinize Geldi.` \n[**Pakete Bak**](t.me/addstickers/{packshortname})"
     )
     os.system("rm -rf  Stickers.png")
     os.system("rm -rf  AnimatedSticker.tgs")
