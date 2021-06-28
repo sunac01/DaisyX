@@ -249,7 +249,7 @@ async def deezsong(_, message):
             song = await download_song(url)
         if not song:
             song = await download_song(url)
-        await m.edit("Uploading")
+        await m.edit("Yükleniyor")
         await message.reply_audio(
             audio=song,
             title=title,
