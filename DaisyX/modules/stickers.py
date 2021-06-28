@@ -393,10 +393,12 @@ async def _(event):
     os.system("rm -rf  AnimatedSticker.tgs")
     os.system("rm -rf *.webp")
 
+    
+    
     @Daisy(pattern="^/kaldir$")
     async def _(event):
-    try:
-        if not event.is_reply:
+      try:
+          if not event.is_reply:
             await event.reply(
                 "Kişisel çıkartma paketinizden çıkarmak için bir çıkartmayı yanıtlayın."
             )
