@@ -210,140 +210,191 @@ async def get_sticker_emoji(event):
     return final_emoji
 
 @Daisy(pattern="^/qs ?(.*)")
-async def kang(client, message):
-    if not message.reply_to_message:
-        return await message.reply_text(
-            "Reply to a sticker/image to kang it."
-        )
-    if not message.from_user:
-        return await message.reply_text(
-            "You are anon admin, kang stickers in my pm."
-        )
-    msg = await message.reply_text("Kanging Sticker..")
-
-    # Find the proper emoji
-    args = message.text.split()
-    if len(args) > 1:
-        sticker_emoji = str(args[1])
-    elif (
-        message.reply_to_message.sticker
-        and message.reply_to_message.sticker.emoji
-    ):
-        sticker_emoji = message.reply_to_message.sticker.emoji
-    else:
-        sticker_emoji = "🤔"
-
-    # Get the corresponding fileid, resize the file if necessary
-    doc = (
-        message.reply_to_message.photo
-        or message.reply_to_message.document
-    )
-    try:
-        if message.reply_to_message.sticker:
-            sticker = await create_sticker(
-                await get_document_from_file_id(
-                    message.reply_to_message.sticker.file_id
-                ),
-                sticker_emoji,
-            )
-        elif doc:
-            temp_file_path = await app.download_media(doc)
-            image_type = imghdr.what(temp_file_path)
-            if image_type not in SUPPORTED_TYPES:
-                return await msg.edit(
-                    "Format not supported! ({})".format(image_type)
-                )
-            try:
-                temp_file_path = await resize_file_to_sticker_size(
-                    temp_file_path
-                )
-            except OSError as e:
-                await msg.edit_text("Something wrong happened.")
-                raise Exception(
-                    f"Something went wrong while resizing the sticker (at {temp_file_path}); {e}"
-                )
-                return False
-            sticker = await create_sticker(
-                await upload_document(
-                    client, temp_file_path, message.chat.id
-                ),
-                sticker_emoji,
-            )
-            if os.path.isfile(temp_file_path):
-                os.remove(temp_file_path)
-        else:
-            return await msg.edit("Nope, can't kang that.")
-    except ShortnameOccupyFailed:
-        await message.reply_text("Change Your Name Or Username")
-        return
-
-    except Exception as e:
-        await message.reply_text(str(e))
-        e = format_exc()
-        return print(e)
-
-    # Find an available pack & add the sticker to the pack; create a new pack if needed
-    # Would be a good idea to cache the number instead of searching it every single time...
-    packnum = 0
-    packname = "f" + str(message.from_user.id) + "_by_" + BOT_USERNAME
-    try:
-        while True:
-            stickerset = await get_sticker_set_by_name(
-                client, packname
-            )
-            if not stickerset:
-                stickerset = await create_sticker_set(
-                    client,
-                    message.from_user.id,
-                    f"{message.from_user.first_name[:32]}'s kang pack",
-                    packname,
-                    [sticker],
-                )
-            elif stickerset.set.count >= MAX_STICKERS:
-                packnum += 1
-                packname = (
-                    "f"
-                    + str(packnum)
-                    + "_"
-                    + str(message.from_user.id)
-                    + "_by_"
-                    + BOT_USERNAME
-                )
-                continue
-            else:
-                await add_sticker_to_set(client, stickerset, sticker)
-            break
-
-        await msg.edit(
-            "Sticker Kanged To [Pack](t.me/addstickers/{})\nEmoji: {}".format(
-                packname, sticker_emoji
-            )
-        )
-    except (PeerIdInvalid, UserIsBlocked):
-        keyboard = InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        text="Start", url=f"t.me/{BOT_USERNAME}"
-                    )
-                ]
-            ]
-        )
-        await msg.edit(
-            "You Need To Start A Private Chat With Me.",
-            reply_markup=keyboard,
-        )
-    except StickerPngNopng:
-        await message.reply_text(
-            "Stickers must be png files but the provided image was not a png"
-        )
-    except StickerPngDimensions:
-        await message.reply_text(
-            "The sticker png dimensions are invalid."
-        )
-
-@Daisy(pattern="^/kaldir$")
 async def _(event):
+    if not event.is_reply:
+        await event.reply("Lütfen Paketinize Eklemek İçin Bir Çıkartmayı Yanıtlayın")
+        return
+    reply_message = await event.get_reply_message()
+    sticker_emoji = await get_sticker_emoji(event)
+    input_str = event.pattern_match.group(1)
+    if input_str:
+        sticker_emoji = input_str
+    user = await event.get_sender()
+    if not user.first_name:
+        user.first_name = user.id
+    pack = 1
+    userid = event.sender_id
+    first_name = user.first_name
+    packname = f"{first_name}'s Stiker Vol.{pack}"
+    packshortname = f"Yelis_stickers_{userid}"
+    kanga = await event.reply("Tamamdır Bu Çıkartmayı Pakete Ekliyecem")
+    is_a_s = is_it_animated_sticker(reply_message)
+    file_ext_ns_ion = "Stickers.png"
+    file = await event.client.download_file(reply_message.media)
+    uploaded_sticker = None
+    if is_a_s:
+        file_ext_ns_ion = "AnimatedSticker.tgs"
+        uploaded_sticker = await ubot.upload_file(file, file_name=file_ext_ns_ion)
+        packname = f"{first_name}'s Animated Stiker Vol.{pack}"
+        packshortname = f"Yelis_animated_{userid}"
+    elif not is_message_image(reply_message):
+        await kanga.edit("Ah hayır.. Bu Mesaj türü geçersiz")
+        return
+    else:
+        with BytesIO(file) as mem_file, BytesIO() as sticker:
+            resize_image(mem_file, sticker)
+            sticker.seek(0)
+            uploaded_sticker = await ubot.upload_file(
+                sticker, file_name=file_ext_ns_ion
+            )
+
+    await kanga.edit("Çıkartma Çalınıyor...")
+
+    async with ubot.conversation("@Stickers") as d_conv:
+        now = datetime.datetime.now()
+        dt = now + datetime.timedelta(minutes=1)
+        if not await stickerset_exists(d_conv, packshortname):
+
+            await silently_send_message(d_conv, "/cancel")
+            if is_a_s:
+                response = await silently_send_message(d_conv, "/newanimated")
+            else:
+                response = await silently_send_message(d_conv, "/newpack")
+            if "Yay!" not in response.text:
+                await tbot.edit_message(
+                    kanga, f"**Error**! @Stickers replied: {response.text}"
+                )
+                return
+            response = await silently_send_message(d_conv, packname)
+            if not response.text.startswith("Alright!"):
+                await tbot.edit_message(
+                    kanga, f"**Error**! @Stickers replied: {response.text}"
+                )
+                return
+            w = await d_conv.send_file(
+                file=uploaded_sticker, allow_cache=False, force_document=True
+            )
+            response = await d_conv.get_response()
+            if "Sorry" in response.text:
+                await tbot.edit_message(
+                    kanga, f"**Error**! @Stickers replied: {response.text}"
+                )
+                return
+            await silently_send_message(d_conv, sticker_emoji)
+            await silently_send_message(d_conv, "/publish")
+            response = await silently_send_message(d_conv, f"<{packname}>")
+            await silently_send_message(d_conv, "/skip")
+            response = await silently_send_message(d_conv, packshortname)
+            if response.text == "Sorry, this short name is already taken.":
+                await tbot.edit_message(
+                    kanga, f"**Error**! @Stickers replied: {response.text}"
+                )
+                return
+        else:
+            await silently_send_message(d_conv, "/cancel")
+            await silently_send_message(d_conv, "/addsticker")
+            await silently_send_message(d_conv, packshortname)
+            await d_conv.send_file(
+                file=uploaded_sticker, allow_cache=False, force_document=True
+            )
+            response = await d_conv.get_response()
+            if response.text == FILLED_UP_DADDY:
+                while response.text == FILLED_UP_DADDY:
+                    pack += 1
+                    prevv = int(pack) - 1
+                    packname = f"{first_name}'s Stiker Vol.{pack}"
+                    packshortname = f"Vol_{pack}_with_{userid}"
+
+                    if not await stickerset_exists(d_conv, packshortname):
+                        await tbot.edit_message(
+                            kanga,
+                            "**Pack No. **"
+                            + str(prevv)
+                            + "** is full! Making a new Pack, Vol. **"
+                            + str(pack),
+                        )
+                        if is_a_s:
+                            response = await silently_send_message(
+                                d_conv, "/newanimated"
+                            )
+                        else:
+                            response = await silently_send_message(d_conv, "/newpack")
+                        if "Yay!" not in response.text:
+                            await tbot.edit_message(
+                                kanga, f"**Error**! @Stickers replied: {response.text}"
+                            )
+                            return
+                        response = await silently_send_message(d_conv, packname)
+                        if not response.text.startswith("Alright!"):
+                            await tbot.edit_message(
+                                kanga, f"**Error**! @Stickers replied: {response.text}"
+                            )
+                            return
+                        w = await d_conv.send_file(
+                            file=uploaded_sticker,
+                            allow_cache=False,
+                            force_document=True,
+                        )
+                        response = await d_conv.get_response()
+                        if "Sorry" in response.text:
+                            await tbot.edit_message(
+                                kanga, f"**Error**! @Stickers replied: {response.text}"
+                            )
+                            return
+                        await silently_send_message(d_conv, sticker_emoji)
+                        await silently_send_message(d_conv, "/publish")
+                        response = await silently_send_message(
+                            bot_conv, f"<{packname}>"
+                        )
+                        await silently_send_message(d_conv, "/skip")
+                        response = await silently_send_message(d_conv, packshortname)
+                        if response.text == "Sorry, this short name is already taken.":
+                            await tbot.edit_message(
+                                kanga, f"**Error**! @Stickers replied: {response.text}"
+                            )
+                            return
+                    else:
+                        await tbot.edit_message(
+                            kanga,
+                            "**Pack No. **"
+                            + str(prevv)
+                            + "** is full! Switching to Vol. **"
+                            + str(pack),
+                        )
+                        await silently_send_message(d_conv, "/addsticker")
+                        await silently_send_message(d_conv, packshortname)
+                        await d_conv.send_file(
+                            file=uploaded_sticker,
+                            allow_cache=False,
+                            force_document=True,
+                        )
+                        response = await d_conv.get_response()
+                        if "Sorry" in response.text:
+                            await tbot.edit_message(
+                                kanga, f"**Error**! @Stickers replied: {response.text}"
+                            )
+                            return
+                        await silently_send_message(d_conv, sticker_emoji)
+                        await silently_send_message(d_conv, "/done")
+            else:
+                if "Sorry" in response.text:
+                    await tbot.edit_message(
+                        kanga, f"**Error**! @Stickers replied: {response.text}"
+                    )
+                    return
+                await silently_send_message(d_conv, response)
+                await silently_send_message(d_conv, sticker_emoji)
+                await silently_send_message(d_conv, "/done")
+    await kanga.edit("Bu Çıkartma Paketinize Geliyor 🚶")
+    await kanga.edit(
+        f"Bu Etiket Paketinize Geldi.` \n**Pakete Bak** [Here](t.me/addstickers/{packshortname})"
+    )
+    os.system("rm -rf  Stickers.png")
+    os.system("rm -rf  AnimatedSticker.tgs")
+    os.system("rm -rf *.webp")
+
+    @Daisy(pattern="^/kaldir$")
+    async def _(event):
     try:
         if not event.is_reply:
             await event.reply(
