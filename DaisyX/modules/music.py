@@ -216,8 +216,7 @@ async def jssong(_, message):
 
 # Deezer Music
 
-
-@app.on_message(filters.command("deezer") & ~filters.edited)
+@app.on_message(filters.command("deezer"))
 @capture_err
 async def deezsong(_, message):
     global is_downloading
