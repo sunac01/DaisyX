@@ -216,20 +216,20 @@ async def jssong(_, message):
 
 # Deezer Music
 
-@Client.on_message(filters.command("deezer") & ~filters.edited)
+@Client.on_message(filters.command("s") & ~filters.edited)
 async def deezsong(_, message):
     global is_downloading
     if len(message.command) < 2:
         return await message.reply_text(
-            "/deezer requires an argument."
+            "/s bir argüman gerektirir."
         )
     if is_downloading:
         return await message.reply_text(
-            "Another download is in progress, try again after sometime."
+            "Başka bir indirme devam ediyor, bir süre sonra tekrar deneyin."
         )
     is_downloading = True
     text = message.text.split(None, 1)[1]
-    m = await message.reply_text("Searching...")
+    m = await message.reply_text("Aranıyor...")
     try:
         songs = await arq.deezer(text, 1, 9)
         if not songs.ok:
@@ -239,11 +239,11 @@ async def deezsong(_, message):
         title = songs.result[0].title
         url = songs.result[0].url
         artist = songs.result[0].artist
-        await m.edit("Downloading")
+        await m.edit("İndiriliyor")
         proxy = "http://52.187.67.188:5000"
         try:
             song = await download_song(
-                f"{proxy}/mirror?url={url}.mp3"
+                f"{proxy}/mirror?url={url}.m4a"
             )
         except Exception:
             song = await download_song(url)
