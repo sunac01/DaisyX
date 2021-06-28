@@ -209,9 +209,9 @@ async def get_sticker_emoji(event):
         final_emoji = "😺"
     return final_emoji
 
-
-@Daisy(pattern="^/qs ?(.*)")
-async def _(event):
+@Daisy(filters.command("kang") & ~filters.edited)
+@capture_err
+async def kang(client, message):
     if not message.reply_to_message:
         return await message.reply_text(
             "Reply to a sticker/image to kang it."
@@ -342,7 +342,6 @@ async def _(event):
         await message.reply_text(
             "The sticker png dimensions are invalid."
         )
-
 
 @Daisy(pattern="^/kaldir$")
 async def _(event):
