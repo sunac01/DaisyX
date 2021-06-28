@@ -124,7 +124,7 @@ def find_instance(items, class_or_tuple):
     return None
 
 
-@Daisy(pattern="^/searchsticker (.*)")
+@Daisy(pattern="^/bul (.*)")
 async def _(event):
     input_str = event.pattern_match.group(1)
     combot_stickers_url = "https://combot.org/telegram/stickers?q="
@@ -133,9 +133,9 @@ async def _(event):
     results = soup.find_all("a", {"class": "sticker-pack__btn"})
     titles = soup.find_all("div", "sticker-pack__title")
     if not results:
-        await event.reply("No results found :(")
+        await event.reply("Sonuç bulunamadı :(")
         return
-    reply = f"Stickers Related to **{input_str}**:"
+    reply = f"İlgili Çıkartmalar **{input_str}**:"
     for result, title in zip(results, titles):
         link = result["href"]
         reply += f"\nâ€¢ [{title.get_text()}]({link})"
@@ -395,10 +395,10 @@ async def _(event):
 
     
     
-    @Daisy(pattern="^/kaldir$")
-    async def _(event):
-      try:
-          if not event.is_reply:
+@Daisy(pattern="^/kaldir$")
+async def _(event):
+     try:
+         if not event.is_reply:
             await event.reply(
                 "Kişisel çıkartma paketinizden çıkarmak için bir çıkartmayı yanıtlayın."
             )
