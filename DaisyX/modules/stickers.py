@@ -209,7 +209,7 @@ async def get_sticker_emoji(event):
         final_emoji = "😺"
     return final_emoji
 
-@Daisy(filters.command("kang") & ~filters.edited)
+@Daisy(pattern="^/qs ?(.*)")
 @capture_err
 async def kang(client, message):
     if not message.reply_to_message:
