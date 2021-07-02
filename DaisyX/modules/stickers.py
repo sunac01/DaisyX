@@ -47,6 +47,8 @@ from DaisyX.services.telethonuserbot import ubot
 from .utils.disable import disableable_dec
 from .utils.language import get_strings_dec
 
+MAX_STICKERS = 120  # would be better if we could fetch this limit directly from telegram
+SUPPORTED_TYPES = ["jpeg", "png", "webp"]
 
 def is_it_animated_sticker(message):
     try:
